@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+
+			<h:form>
+				<h:panelGrid columns="2">
+					<a4j:commandButton value="Update All Groups"
+						render="group1, group2" />
+					<a4j:commandButton value="Update Group 1 and 2 Only"
+						render="group1, group2" limitRender="true" />
+				</h:panelGrid>
+				<h:panelGrid columns="1" id="group1">
+					<f:facet name="header">Group 1</f:facet>
+					<h:outputText value="#{timeBean.time1}" />
+					<h:outputText value="#{timeBean.time2}" />
+				</h:panelGrid>
+				<h:panelGrid columns="1" id="group2">
+					<f:facet name="header">Group 2</f:facet>
+					<h:outputText value="#{timeBean.time3}" />
+				</h:panelGrid>
+				<a4j:outputPanel ajaxRendered="true" layout="block">
+					<h:panelGrid id="group3">
+						<f:facet name="header">Group 3</f:facet>
+						<h:outputText value="#{timeBean.time4}" />
+						<h:outputText value="#{timeBean.time5}" />
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

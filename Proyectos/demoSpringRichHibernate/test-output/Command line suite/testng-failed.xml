@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Command line suite]">
+  <test name="Command line test(failed)">
+    <classes>
+      <class name="pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest">
+        <methods>
+          <include name="getByLoginInformation3"/>
+          <include name="getByLoginInformation"/>
+          <include name="springTestContextAfterTestMethod"/>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="springTestContextBeforeTestClass"/>
+          <include name="springTestContextPrepareTestInstance"/>
+          <include name="testfindPersisted"/>
+          <include name="saveUser"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>

@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="../principal.xhtml">
+<ui:define name="contenido">
+
+	  
+   <h:form prependId="false">
+
+	<h:selectOneMenu id="sslocal" value="#{venta.selectedCodigoLocal}">
+      <f:selectItem itemLabel="Select One Local" itemValue="" /> 
+     <f:selectItems value="#{venta.listadeLocal}" var="local" itemLabel="#{local.localNombre}" itemValue="#{local.localCodigo}"/>
+	</h:selectOneMenu>	
+	
+	<h:selectOneMenu id="sssala" value="#{venta.selectedCodigoSala}">
+      <f:selectItem itemLabel="Select One Sala" itemValue="" /> 
+     <f:selectItems value="#{venta.listaSala}" var="sala" itemLabel="#{sala.nombreSala}" itemValue="#{sala.codigoSala}"/>
+	</h:selectOneMenu>	
+
+	<h:selectOneMenu id="sspelicula" value="#{venta.selectedCodigoPelicula}">
+      <f:selectItem itemLabel="Select One Pelicula" itemValue="" /> 
+     <f:selectItems value="#{venta.listadePelicula}" var="pelicula" itemLabel="#{pelicula.titulo}" itemValue="#{pelicula.codigo}"/>
+	</h:selectOneMenu>	
+	     
+    <p:commandButton value="Go" action="#{venta.llamarCartelera}" update="cartelera"></p:commandButton>
+
+    <p:panel id="cartelera">
+     	 <p:dataTable var="det" value="#{venta.carteleraDetalleLista}"
+     	    selectionMode="single" >
+     	      	 	 	   
+	 	 <p:column >  
+	            <f:facet name="header">Pelicula  
+             </f:facet>  
+             <h:outputText value="#{det.cartelera.pelicula.titulo}" />               
+         </p:column>
+         
+         <p:column >  
+	            <f:facet name="header">Capacidad
+             </f:facet>  
+             <h:outputText value="#{det.sala.capacidadSala}" />
+               
+         </p:column>
+
+         <p:column >  
+	            <f:facet name="header">Local  
+             </f:facet>  
+             <h:outputText value="#{det.sala.local.localNombre}" />
+               
+         </p:column>
+
+		<p:column >  
+	            <f:facet name="header">precio
+             </f:facet>  
+             <h:outputText value="#{det.precio}" />
+               
+         </p:column>
+    
+    <p:column >  
+	            <f:facet name="header">horario
+             </f:facet>  
+             <h:outputText value="#{det.horario}" />
+               
+         </p:column>
+
+           <p:column style="width:32px">  
+            <p:commandButton action="#{venta.llamarAsientos}" update="displayAsientos"   
+                     image="ui-icon ui-icon-search"  ajax="true">  
+                 <f:setPropertyActionListener value="#{det}"  
+                     target="#{venta.selectedCartelera}" />  
+             </p:commandButton>  
+         </p:column>   
+    
+           
+         </p:dataTable>
+    </p:panel>    
+    <p:panel id="displayAsientos">
+		<p:dataTable var="asiento" value="#{venta.asientoLista}" selectionMode="single">
+		<p:column>  
+	            <f:facet name="header">Sala
+             </f:facet>  
+             <h:outputText value="#{asiento.sala.nombreSala}" />               
+         </p:column>	 	   
+	 	 <p:column>  
+	            <f:facet name="header">asiento  
+             </f:facet>  
+             <h:outputText value="#{asiento.asiento_numero}" />               
+         </p:column>
+         <p:column>  
+	            <f:facet name="header">status
+             </f:facet>  
+             <h:outputText value="#{asiento.asiento_status}" />               
+         </p:column>
+         
+         <p:column style="width:32px">  
+            <p:commandButton action="#{venta.venderAsiento}" update="vendido"   
+                     image="ui-icon ui-icon-cart"  ajax="true">  
+                 <f:setPropertyActionListener value="#{asiento}"  
+                     target="#{venta.asientoSeleccionado}" />  
+             </p:commandButton>  
+         </p:column>         
+         
+		</p:dataTable>    
+    </p:panel>
+    
+	<p:panel id="vendido">
+	<p:dataTable var="asientovendido" value="#{venta.asientoVendidoLista}" selectionMode="single">
+		
+		<p:column>  
+	            <f:facet name="header">Asiento Vendido
+             </f:facet>  
+             <h:outputText value="#{asientovendido.asiento_numero}" />  <p:spacer width="50" height="10" />   <h:graphicImage value="../resources/skin/chair.png"></h:graphicImage>               
+         </p:column>	 	   
+
+		<p:column>  
+	            <f:facet name="header">Sala
+             </f:facet>  
+             <h:outputText value="#{asientovendido.sala.codigoSala}" />               
+         </p:column>	 	   
+
+
+	
+	</p:dataTable>
+	<p:commandButton value="Check out" action="#{venta.checkout}"></p:commandButton>
+	</p:panel>   
+ </h:form>
+   
+
+ </ui:define>
+ </ui:composition>  
+</html>	 	
+	 	 	
+	 	

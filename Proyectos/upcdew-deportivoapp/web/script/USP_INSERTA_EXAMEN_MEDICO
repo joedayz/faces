@@ -1,0 +1,94 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `USP_INSERTA_EXAMEN_MEDICO` $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_INSERTA_EXAMEN_MEDICO`(
+IN p_Co_ExamenMedico INT(11),
+IN p_Co_Jugador INT(11),
+IN p_Nu_Talla DOUBLE,
+IN p_Tx_ExamenSangre VARCHAR(255),
+IN p_Tx_ExamenOrina VARCHAR(255),
+IN p_Nu_AlturaPromedioSalto Double,
+IN p_Tx_Temporada VARCHAR(255),
+IN p_Nu_Resistencia DOUBLE,
+IN p_Nu_LongitudMuslo DOUBLE,
+IN p_Nu_LongitudCintura DOUBLE,
+IN p_Nu_LongitudPecho DOUBLE,
+IN p_Nu_LongitudAntebrazo DOUBLE,
+IN p_Nu_LongitudBrazo DOUBLE,
+IN p_Nu_LongitudCuello DOUBLE,
+IN p_Nu_Peso DOUBLE
+ )
+BEGIN
+ DECLARE nExistExamen INT DEFAULT 0;
+    DECLARE txn_error INTEGER DEFAULT 0 ;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN
+     SET txn_error=1;
+    END;
+  START TRANSACTION;
+
+      SELECT COUNT(*)
+    INTO nExistExamen
+    FROM t_examenmedico
+    WHERE Co_ExamenMedico=p_Co_ExamenMedico;
+   IF nExistExamen =0 THEN
+    INSERT INTO t_examenmedico
+         (
+	          Co_Jugador,
+            Nu_Talla,
+            Tx_ExamenSangre,
+            Tx_ExamenOrina,
+            Nu_AlturaPromedioSalto,
+            Tx_Temporada,
+            Nu_Resistencia,
+            Nu_LongitudMuslo,
+            Nu_LongitudCintura,
+            Nu_LongitudPecho,
+            Nu_LongitudAntebrazo,
+            Nu_LongitudBrazo,
+            Nu_LongitudCuello,
+            Nu_Peso
+         )
+      VALUES
+         (
+	          p_Co_Jugador,
+            p_Nu_Talla,
+            p_Tx_ExamenSangre,
+            p_Tx_ExamenOrina,
+            p_Nu_AlturaPromedioSalto,
+            p_Tx_Temporada,
+            p_Nu_Resistencia,
+            p_Nu_LongitudMuslo,
+            p_Nu_LongitudCintura,
+            p_Nu_LongitudPecho,
+            p_Nu_LongitudAntebrazo,
+            p_Nu_LongitudBrazo,
+            p_Nu_LongitudCuello,
+            p_Nu_Peso
+            ) ;
+    ELSE
+
+    UPDATE t_examenmedico SET
+            Nu_Talla=p_Nu_Talla,
+            Tx_ExamenSangre=p_Tx_ExamenSangre,
+            Tx_ExamenOrina=p_Tx_ExamenOrina,
+            Nu_AlturaPromedioSalto=p_Nu_AlturaPromedioSalto,
+            Tx_Temporada=p_Tx_Temporada,
+            Nu_Resistencia=p_Nu_Resistencia,
+            Nu_LongitudMuslo=p_Nu_LongitudMuslo,
+            Nu_LongitudCintura=p_Nu_LongitudCintura,
+            Nu_LongitudPecho=p_Nu_LongitudPecho,
+            Nu_LongitudAntebrazo=p_Nu_LongitudAntebrazo,
+            Nu_LongitudBrazo=p_Nu_LongitudBrazo,
+            Nu_LongitudCuello=p_Nu_LongitudCuello,
+            Nu_Peso=p_Nu_Peso where Co_ExamenMedico=Co_ExamenMedico;
+END IF ;
+   IF txn_error THEN
+       ROLLBACK;
+       SELECT 'Transfer aborted ';
+   ELSE
+         COMMIT;
+   END IF;
+
+END $$
+
+DELIMITER ;

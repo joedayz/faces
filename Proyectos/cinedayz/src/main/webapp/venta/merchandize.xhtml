@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="../principal.xhtml">
+<ui:define name="contenido">
+
+	  <h:form prependId="false">  
+   <p:panel header="Merchandizing">
+     <p:dataGrid var="mer" value="#{venta.listaMerchandize}" columns="3"  
+         rows="12" paginator="true" effect="true"  
+         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+         rowsPerPageTemplate="9,12,15">  
+           
+         <p:column>  
+             <p:panel header="#{mer.merchandizeTipoProducto}" style="text-align:center">  
+                 <h:panelGrid columns="1" style="width:100%">  
+                     <p:graphicImage value="/resources/merchandize/#{mer.merchandizeFoto}"/>   
+                   
+                     <h:outputText value="Precio: S/ #{mer.merchandizePrecio}" />  
+                       
+                     <p:commandLink update="carDetail" oncomplete="carDialog.show()" title="View Detail">  
+                         <p:graphicImage value="/resources/skin/search.png"/>   
+                         <f:setPropertyActionListener value="#{mer}"   
+                                 target="#{venta.selectedMerchandize}" />  
+                     </p:commandLink>  
+                 </h:panelGrid>  
+             </p:panel>  
+         </p:column>  
+   
+     </p:dataGrid>  
+     
+     <p:dialog  header="Merchandize Detalle" widgetVar="carDialog" width="200" height="175" modal="true">  
+         <p:outputPanel id="carDetail" style="text-align:center;" layout="block">  
+           
+     <!--          <p:graphicImage value="/resources/merchandize/#{venta.selectedMerchandize.merchandizeFoto}"/> -->  
+               
+             <h:panelGrid  columns="2" cellpadding="5">
+                 <h:outputLabel for="color" value="Pelicula: " />  
+                 <h:outputText id="color" value="#{venta.selectedMerchandize.pelicula.titulo}" style="color:#{tableBean.selectedCar.color}"/>  
+               
+                 <h:outputLabel for="year" value="Tipo de Souvenir: " />  
+                 <h:outputText id="year" value="#{venta.selectedMerchandize.merchandizeDetalle}" />  
+                  
+                 <h:outputLabel for="modelNo" value="Cantidad disponible: " />  
+                 <h:outputText id="modelNo" value="#{venta.selectedMerchandize.merchandizeCantidad}" />  
+                   
+                 
+             </h:panelGrid>  
+         </p:outputPanel>  
+     </p:dialog>  
+     
+</p:panel>       
+   
+ </h:form>
+ </ui:define>
+ </ui:composition>  
+</html>	 	
+	 	 	
+	 	

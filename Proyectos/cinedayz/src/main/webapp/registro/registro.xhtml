@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"   
+      xmlns:c="http://java.sun.com/jstl/core">
+
+<ui:composition template="../principal.xhtml">
+<ui:define name="contenido">
+
+	 	<h:form>
+<p:panel header="Registrese">
+	 	
+	 	    <table><tr><td>
+	 		<h:outputLabel value="Nombre:"></h:outputLabel></td><td>
+	 		<h:inputText value="#{clienteRegistro.nombre}"></h:inputText></td></tr><tr><td>
+
+	 		<h:outputLabel value="Apellido 1:"></h:outputLabel></td><td>
+	 		<h:inputText value="#{clienteRegistro.apellido1}"></h:inputText></td></tr><tr><td>
+
+	 		<h:outputLabel value="Apellido 2:"></h:outputLabel></td><td>
+	 		<h:inputText value="#{clienteRegistro.apellido2}"></h:inputText></td></tr><tr><td>
+
+	 		<h:outputLabel value="Email:"></h:outputLabel></td><td>
+	 		<h:inputText value="#{clienteRegistro.email_adress}"></h:inputText></td></tr><tr><td>
+
+	 		
+	 		<h:commandButton value="Grabar" action="#{clienteRegistro.registrar}"></h:commandButton></td></tr></table>
+</p:panel>
+
+ 	</h:form>     
+	</ui:define>
+	</ui:composition>
+</html>

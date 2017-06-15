@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"   
+      xmlns:c="http://java.sun.com/jstl/core">
+
+<ui:composition template="../principal.xhtml">
+<ui:define name="contenido">
+
+	 <h:form prependId="false">
+	 <p:growl id="growl" showDetail="true" />
+	 	 	       
+     <p:panel header="Intranet-ClientAutenticacion">  
+         <h:panelGrid columns="2">  
+             <h:outputText value="Tu usuario: *" />   
+             <p:inputText value="#{clienteRegistro.clienteCodigo}" required="true" label="Usuario"/>  
+
+             <h:outputText value="Tu clave: *" />   
+             <p:inputText value="#{clienteRegistro.clienteClave}" required="true" label="Clave"/>  
+
+               
+             <p:commandButton value="Save" action="#{clienteRegistro.autenticaCliente}" update="clienteusuario,growl,usuarioName"/>  
+             <p:ajaxStatus>  
+                 <f:facet name="start">  
+                     <h:graphicImage value="../design/ajaxloading.gif" />  
+                 </f:facet>  
+                       
+                 <f:facet name="complete">  
+                     <h:outputText value="" />  
+                 </f:facet>  
+             </p:ajaxStatus>  
+         </h:panelGrid>  
+     </p:panel>  
+<p:panel id="clienteusuario">
+        <h:outputText value="#{clienteRegistro.clienteEncontrado.apellido1}" />
+</p:panel>	 	 
+	 	   
+	 	</h:form>     
+	</ui:define>
+	</ui:composition>
+</html>

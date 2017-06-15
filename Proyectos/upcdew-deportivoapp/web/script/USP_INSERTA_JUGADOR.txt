@@ -1,0 +1,72 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `deportivo`.`USP_INSERTA_JUGADOR` $$
+CREATE PROCEDURE `USP_INSERTA_JUGADOR`(
+IN p_Co_Jugador VARCHAR(255),
+IN p_Tx_Telefono VARCHAR(255),
+IN p_No_Jugador VARCHAR(255),
+IN p_Tx_ApellidoPaterno VARCHAR(255),
+IN p_Tx_ApellidoMaterno VARCHAR(255),
+IN p_Tx_Direccion VARCHAR(255),
+IN p_Tx_Contrato VARCHAR(255),
+IN p_Fe_Registro DATE,
+IN p_Tx_Posicion VARCHAR(255)
+ )
+BEGIN
+ DECLARE nExistJugador INT DEFAULT 0;
+    DECLARE txn_error INTEGER DEFAULT 0 ;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN
+     SET txn_error=1;
+    END;
+  START TRANSACTION;
+
+      SELECT COUNT(*)
+    INTO nExistJugador
+    FROM T_Jugador
+    WHERE Co_Jugador=p_Co_Jugador;
+   IF nExistJugador =0 THEN
+    INSERT INTO T_Jugador
+         (
+          	Tx_Telefono,
+	          No_Jugador,
+            Tx_ApellidoPaterno,
+            Tx_ApellidoMaterno,
+            Tx_Direccion,
+            Tx_Contrato,
+            Fe_Registro,
+            Tx_Posicion
+         )
+      VALUES
+         (
+	          p_Tx_Telefono,
+	          p_No_Jugador,
+            p_Tx_ApellidoPaterno,
+            p_Tx_ApellidoMaterno,
+            p_Tx_Direccion,
+            p_Tx_Contrato,
+            p_Fe_Registro,
+            p_Tx_Posicion
+            ) ;
+    ELSE
+
+    UPDATE T_Jugador SET
+            Tx_Telefono=p_Tx_Telefono,
+	          No_Jugador=p_No_Jugador,
+            Tx_ApellidoPaterno=p_Tx_ApellidoPaterno,
+            Tx_ApellidoMaterno=p_Tx_ApellidoMaterno,
+            Tx_Direccion=p_Tx_Direccion,
+            Tx_Contrato=p_Tx_Contrato,
+            Fe_Registro=p_Fe_Registro,
+            Tx_Posicion =p_Tx_Posicion where Co_Jugador=p_Co_Jugador;
+
+END IF ;
+   IF txn_error THEN
+       ROLLBACK;
+       SELECT 'Transfer aborted ';
+   ELSE
+         COMMIT;
+   END IF;
+
+END $$
+
+DELIMITER ;

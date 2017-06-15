@@ -1,0 +1,58 @@
+body {
+    margin: 0px;
+}
+
+.mainFrame{
+	width:100%;
+	border-width:0;
+}
+
+#top {
+    width: 100%;
+    /*height: 50px;*/
+    min-width: 730px;
+    background-image: url( '../images/bg.gif' );
+    background-repeat: repeat-x;
+    background-position: left top;
+    float:left;
+    width:100%;
+}
+
+#bottom {
+    background-color: #c2dfef;
+    padding: 10px;
+}
+#menu {
+    background-color: #ffffff;
+    vertical-align: top;
+}
+#left {
+    background-color: #ece3a5;
+    padding: 10px;
+    width: 150px;
+    vertical-align: top;
+}
+
+#right {
+    background-color: #ece3a5;
+    padding: 10px;
+    width: 150px;
+    vertical-align: top;
+}
+
+#content {
+    background-color: #ffffff;
+        vertical-align: top;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}

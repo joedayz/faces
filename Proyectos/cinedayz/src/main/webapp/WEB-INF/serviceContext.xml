@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+   <bean name="clienteService" class="pe.joedayz.ejemplos.cinedayz.registro.ClienteService">
+   		<property name="clienteDAO" ref="clienteDAO"></property>
+   		<property name="usuarioDAO" ref="usuarioDAO"></property>
+   </bean>
+   
+   <bean name="peliculaService" class="pe.joedayz.ejemplos.cinedayz.cartelera.PeliculaService">
+   		<property name="peliculaDAO" ref="peliculaDAO"></property>
+   		<property name="carteleraDAO" ref="carteleraDAO"></property>
+   		<property name="comentarioDAO" ref="comentarioDAO"></property>
+   		<property name="actuacionDAO" ref="actuacionDAO"></property>
+   		<property name="clienteDAO" ref="clienteDAO"></property>
+   		
+   		
+   </bean>
+
+   <bean name="carteleraService" class="pe.joedayz.ejemplos.cinedayz.cartelera.CarteleraService">
+        <property name="carteleraDAO" ref="carteleraDAO"></property>
+   		<property name="peliculaDAO" ref="peliculaDAO"></property>
+   		<property name="detCarteleraDAO" ref="detcarteleraDAO"></property>
+   		
+   		<property name="localDAO" ref="localDAO"></property>  	
+   </bean>
+
+   <bean name="merchandizeService" class="pe.joedayz.ejemplos.cinedayz.venta.MerchandizeService">      	 	
+      		<property name="shopcartDAO" ref="shopcartDAO"></property>
+      		<property name="shopcartdetailDAO" ref="shopcartdetailDAO"></property>   
+      		<property name="merchandizeDAO" ref="merchandizeDAO"></property>
+      		<property name="salaDAO" ref="salaDAO"></property>
+      		<property name="localDAO" ref="localDAO"></property>
+      		<property name="peliculaDAO" ref="peliculaDAO"></property>
+      		<property name="detCarteleraDAO" ref="detcarteleraDAO"></property>
+      		<property name="asientoDAO" ref="asientoDAO"></property>
+      		<property name="clienteDAO" ref="clienteDAO"></property>
+   </bean>
+
+</beans>

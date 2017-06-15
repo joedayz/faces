@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ExamenMedicoBean">
+
+   <!-- Use type aliases to avoid typing the full classname every time. -->
+   <typeAlias alias="ExamenMedicoBean" type="com.upc.deportivo.model.ExamenMedicoBean"/>
+
+  <parameterMap id="examenMedicoActualizarParameter" class="java.util.Map">
+    <parameter property="co_ExamenMed"/>
+    <parameter property="codigo" />
+    <parameter property="talla"/>
+    <parameter property="examenSangre" />
+    <parameter property="examenOrina" />
+    <parameter property="alturaPromedioSalto" />
+    <parameter property="temporada"/>
+    <parameter property="resistencia" />
+    <parameter property="longitudMuslo" />
+    <parameter property="longitudCintura" />
+    <parameter property="longitudPecho"/>
+        <parameter property="longitudAntebrazo"/>
+    <parameter property="longitudBrazo" />
+    <parameter property="longitudCuello" />
+    <parameter property="peso" />
+
+   </parameterMap>
+   
+   <parameterMap id="examenMedicoEliminarParameter" class="java.util.Map"  >
+    <parameter property="co_ExamenMed" />
+   </parameterMap>
+   
+   
+   <parameterMap id="examenMedicoObtenerListadoParameter" class="java.util.Map"  >
+   <parameter property="codigo" />
+   </parameterMap>
+
+
+   
+
+<resultMap id="ListadoExamenesMedicosResult" class="ExamenMedicoBean">
+    <result property="co_ExamenMed" column="Co_ExamenMedico"/>
+    <result property="codigo" column="Co_Jugador"/>
+    <result property="nombre" column="No_Jugador" />
+    <result property="apellidoPaterno" column="Tx_ApellidoPaterno"/>
+    <result property="apellidoMaterno" column="Tx_ApellidoMaterno"/>
+    <result property="talla" column="Nu_Talla"/>
+    <result property="examenSangre" column="Tx_ExamenSangre"/>
+    <result property="examenOrina" column="Tx_ExamenOrina"/>
+    <result property="alturaPromedioSalto" column="Nu_AlturaPromedioSalto"/>
+    <result property="temporada" column="Tx_Temporada"/>
+    <result property="resistencia" column="Nu_Resistencia"/>
+    <result property="longitudMuslo" column="Nu_LongitudMuslo"/>
+    <result property="longitudCintura" column="Nu_LongitudCintura"/>
+    <result property="longitudPecho" column="Nu_LongitudPecho"/>
+    <result property="longitudAntebrazo" column="Nu_LongitudAntebrazo"/>
+    <result property="longitudBrazo" column="Nu_LongitudBrazo"/>
+    <result property="longitudCuello" column="Nu_LongitudCuello"/>
+    <result property="peso" column="Nu_Peso"/>
+   
+</resultMap>
+
+ <procedure id="obtenerListadoExamenMedico"
+   resultMap="ListadoExamenesMedicosResult" parameterMap="examenMedicoObtenerListadoParameter">
+   {call USP_OBTENER_EXAMENES_MEDICOS(?)}
+ </procedure>
+
+  <procedure id="actualizarExamenMedico"  parameterMap="examenMedicoActualizarParameter"  >
+   {call USP_INSERTA_EXAMEN_MEDICO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}
+ </procedure>
+
+
+<procedure id="eliminarExamenMedico"  parameterMap="examenMedicoEliminarParameter"  >
+   {call USP_ELIMINAR_EXAMEN_MEDICO(?)}
+ </procedure>
+
+
+
+</sqlMap>

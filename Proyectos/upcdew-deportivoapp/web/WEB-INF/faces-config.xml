@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <application>
+        <view-handler>
+         com.icesoft.faces.facelets.D2DFaceletViewHandler
+        </view-handler>
+        <locale-config>
+            <default-locale>es_PE</default-locale>
+        </locale-config>
+        <message-bundle>com.upc.deportivo.resource.messages</message-bundle>
+    </application>
+    <application>
+        <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+    </application>
+    <managed-bean>
+        <managed-bean-name>usuarioBean</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.view.UsuarioBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>menuBarBean</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.view.MenuBarBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mantenimientoJugador</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.controller.MantenimientoJugadorBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+         <managed-property>
+            <property-name>jugadorServices</property-name>
+             <value>#{jugadorImplement}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mantenimientoExamenMedico</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.controller.MantenimientoExamenMedicoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+         <managed-property>
+            <property-name>jugadorServices</property-name>
+             <value>#{jugadorImplement}</value>
+        </managed-property>
+          <managed-property>
+            <property-name>examenMedicoServices</property-name>
+             <value>#{examenMedicoImplement}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mantenimientoExamenFisico</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.controller.MantenimientoExamenFisicoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+         <managed-property>
+            <property-name>jugadorServices</property-name>
+             <value>#{jugadorImplement}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>examenFisicoServices</property-name>
+             <value>#{examenFisicoImplement}</value>
+        </managed-property>
+    </managed-bean>
+ <managed-bean>
+        <managed-bean-name>mantenimientoJugadorPartido</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.controller.MantenimientoJugadorPartidoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>jugadorPartidoServices</property-name>
+            <value>#{jugadorPartidoImplement}</value>
+        </managed-property>
+         <managed-property>
+            <property-name>jugadorServices</property-name>
+             <value>#{jugadorImplement}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>mantenimientoPartido</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.controller.MantenimientoPartidoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+         <managed-property>
+            <property-name>partidoServices</property-name>
+             <value>#{partidoImplement}</value>
+        </managed-property>
+    </managed-bean>
+    
+    
+     <managed-bean>
+        <managed-bean-name>resultadoPartidoBean</managed-bean-name>
+        <managed-bean-class>com.upc.deportivo.controller.ReporteResultadoPartidoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        
+    </managed-bean>
+    
+    
+    
+    
+    <validator>
+        <validator-id>deportivoAppValidator</validator-id>
+        <validator-class>com.upc.deportivo.view.DeportivoAppValidator</validator-class>
+    </validator>
+
+    
+
+    <navigation-rule>
+        <from-view-id>/pages/login/loginDeportivoApp.jspx</from-view-id>
+        <navigation-case>
+            <from-outcome>ingresar</from-outcome>
+            <to-view-id>/main.jspx</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>cambioClave</from-outcome>
+            <to-view-id>/prueba.jspx</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+     <navigation-rule>
+      <from-view-id>/pages/mantenimiento/mantenimientoJugadorPartido.jspx</from-view-id>
+      <navigation-case>
+         <from-outcome>regresar</from-outcome>
+         <to-view-id>/pages/mantenimiento/mantenimientoPartido.jspx</to-view-id>
+      </navigation-case>
+  </navigation-rule>
+    
+      <navigation-rule>
+      <from-view-id>/pages/mantenimiento/mantenimientoPartido.jspx</from-view-id>
+      <navigation-case>
+         <from-outcome>mantenimientoJugadorPartido</from-outcome>
+         <to-view-id>/pages/mantenimiento/mantenimientoJugadorPartido.jspx</to-view-id>
+      </navigation-case>
+  </navigation-rule>
+</faces-config>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+
+
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.Cliente" table="usuario" discriminator-value="E">
+	
+		<id name="codigo" column="usucodig" length="20">
+			<generator class="assigned" />
+		</id>
+		
+		
+		<discriminator column="usutipou" type="string" ></discriminator>		
+		<property name="nombre" column="usunombr" length="20" />				
+		<property name="clave" column="usuclave" length="20" />
+		<property name="apellido1" column="usuapel1" length="20" />
+		<property name="apellido2" column="usuapel2" length="20" />
+		<property name="email" column="usuemail" length="40" />
+		<property name="status" column="usutatus" length="1" />
+		<property name="intentos" column="usuinten" length="1" />
+		<property name="fechaRegistro" column="usufecre"  />
+		<subclass name="pe.joedayz.ejemplos.cinedayz.dominio.Usuario"
+			discriminator-value="I">
+			<property name="unidad" column="usunidad" length="20" />
+			<property name="position" column="usuposci" length="20" />
+			<property name="telefono" column="usutelef" length="10" />
+			<property name="direccion" column="usudirec" length="20" />			
+			<property name="tipodoc" column="usutipdo" length="20" />
+			<property name="Docidentity" column="usunumdo" length="1" />
+			
+		</subclass>
+
+	</class>
+</hibernate-mapping>

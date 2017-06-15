@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view locale="#{localeBean.locale}" contentType="text/html">
+	<h:head>
+		<h:outputStylesheet library="css" name="standard.css" />
+
+		<script type="text/javascript">
+			function handleLoginRequest(xhr, status, args) {
+				if (args.validationFailed || !args.loggedIn) {
+					jQuery('#dialog').effect("shake", {
+						times : 3
+					}, 100);
+				} else {
+					dlg.hide();
+					jQuery('#loginLink').fadeOut();
+				}
+			}
+		</script>
+	</h:head>
+	<h:body>
+		<p:growl id="loginGrowl" showDetail="true" life="3000" />
+		
+		<h:panelGrid cellspacing="0" cellpadding="0" styleClass="wrapper">
+		
+			<h:panelGrid columns="2" columnClasses="menu,content">
+		
+				<p:panel cellspacing="0" cellpadding="0" styleClass="menu"
+					style="width:250px;">
+					<h:form id="menuForm">
+						<h:link outcome="default">
+							<h:graphicImage library="images" name="roo_logo.png"
+								styleClass="banner" alt="#{messages.label_app}" />
+						</h:link>
+						<!-- ui:insert name="menu">
+							<ui:include src="treeviewCategoria.xhtml" />
+						</ui:insert -->
+					</h:form>
+				</p:panel>
+
+				<h:panelGroup>
+					<p:panel id="mainPanel" toggleable="true" toggleSpeed="250">
+						<p/>
+						<h:outputText id="welcomeText" value="#{messages.label_section_aviso}" />
+						<p/>
+						<div id="media"></div>
+					</p:panel>
+					<br />
+					<h:form>
+						<h:panelGrid columns="4" align="right">
+							<h:panelGrid width="640" cellspacing="0" cellpadding="0"></h:panelGrid>
+							<h:outputLink id="loginLink" value="javascript:void(0)"
+								onclick="dlg.show()" title="login">#{messages.label_signin}</h:outputLink>
+				|     
+				<h:outputLink value="../pages/main.jsf">#{messages.label_signup}</h:outputLink>
+						</h:panelGrid>
+						<br />
+						<h:panelGrid id="busquedaPanel" columns="3" toggleable="true"
+							toggleSpeed="250">
+							<h:outputLabel for="busqueda"
+								value="#{messages.label_busqueda_productos}" />
+							<p:inputText id="busqueda" value="#{beanPublicacion.cadena}"
+								label="Busqueda" style="width:400px;" />
+							<p:commandButton id="buscarButton" value="#{messages.label_search}"
+								icon="ui-icon-search" style="margin:0"
+								action="#{beanPublicacion.buscarPublicacion}" />
+						</h:panelGrid>
+					</h:form>
+					<div id="media"></div>
+					<br />
+					<h:panelGrid cellspacing="0" cellpadding="0" styleClass="content">
+						<ui:insert name="content" />
+					</h:panelGrid>
+					<ui:insert name="footer">
+						<ui:include src="footer.xhtml" />
+					</ui:insert>
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:panelGrid>
+	</h:body>
+</f:view>
+
+<!-- Formulario de Login -->
+<!-- p:dialog id="dialog" header="Login" widgetVar="dlg">
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5" ir="loginPanelGrid">
+			<h:outputLabel for="username" value="Username:" />
+			<p:inputText value="#{loginBean.usuario.usuario}" id="username"
+				required="true" label="username" />
+
+			<h:outputLabel for="password" value="Password:" />
+			<h:inputSecret value="#{loginBean.usuario.clave}" id="password"
+				required="true" label="password" />
+
+			<f:facet name="footer">
+
+				<p:commandButton id="loginButton" value="Login" update=":loginGrowl"
+					action="#{loginBean.doLogin}" />
+			</f:facet>
+		</h:panelGrid>
+	</h:form>
+</p:dialog -->
+
+</html>

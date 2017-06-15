@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+<h:head>
+</h:head>
+<h:body>
+
+<ui:composition template="/page/layout/layout.xhtml">
+	<ui:define name="title">demoSpringRichHibernate</ui:define>
+	<ui:define name="content">
+
+	<br/>
+	<br/>
+	Hi #{sessionBean.user.firstName} #{sessionBean.user.lastName}
+	<br/>
+	<br/>
+	<br/>
+	<br/> 
+	<h:form id="form">
+		JSF 2.0 <br/>
+		<h:inputText value="#{welcomeBean.text}" >
+			<f:ajax execute="@form" render="form:result" event="keyup"  />
+		</h:inputText>
+		<h:outputText id="result" value="#{welcomeBean.text}" />
+	</h:form>
+	<br/>
+	<br/>
+    <br/>
+	<br/>
+    <h:form id="formCalendar">
+        <label for="CalendarID" >Date:</label>
+        <rich:calendar name="Calendar"
+                       id="CalendarID"
+                       value="#{welcomeBean.date}"
+                       datePattern="yyyy-MM-dd" >
+        </rich:calendar>
+    </h:form>
+
+	</ui:define>
+</ui:composition>
+
+</h:body>
+</html>

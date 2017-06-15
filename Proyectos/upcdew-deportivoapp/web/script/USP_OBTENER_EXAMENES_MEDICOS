@@ -1,0 +1,16 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `USP_OBTENER_EXAMENES_MEDICOS` $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `USP_OBTENER_EXAMENES_MEDICOS`(
+IN p_Co_Jugador INT(11))
+BEGIN
+
+Select Co_ExamenMedico,e.Co_Jugador,No_Jugador,Tx_ApellidoPaterno,Tx_ApellidoMaterno,
+Nu_Talla,Tx_ExamenSangre,Tx_ExamenOrina,
+Nu_AlturaPromedioSalto,Tx_Temporada,Nu_Resistencia,Nu_LongitudMuslo,Nu_LongitudCintura,
+Nu_LongitudPecho,Nu_LongitudAntebrazo,Nu_LongitudBrazo,Nu_LongitudCuello,Nu_Peso
+ from t_examenmedico e,t_jugador j where e.Co_Jugador=j.Co_Jugador and e.Co_Jugador=p_Co_Jugador;
+
+END $$
+
+DELIMITER ;

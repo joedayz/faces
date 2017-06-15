@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.ShopCart" table="shopcart" >			
+		<id name="shopFactura" column="shofactu"  >
+			<generator class="increment" />
+		</id>		
+		<property name="shopFecha" column="shofecha" type="date" />		
+
+	 	<many-to-one name="cliente" column="usucodig"  ></many-to-one>
+		<property name="shopTipoPago" column="shopagot"  />		
+		<property name="shopSubtotal" column="shosubto" />
+		<property name="shopTax" column="shotaxvt" />
+		<property name="shopTotal" column="shototal" />
+	</class>
+</hibernate-mapping>

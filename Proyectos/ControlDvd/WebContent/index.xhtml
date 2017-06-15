@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<f:view>
+	<h:head>
+		<title>Control de DVDs</title>
+		<style type="text/css">
+.ui-widget {
+	font-size: 75% !important;
+}
+</style>
+	</h:head>
+
+	<h:body>
+		<h:form id="frmGeneral">
+			<p:fieldset legend="Gestion de DVDs" toggleable="true">
+				<p:messages id="messages" />
+				<h:panelGrid columns="2"
+					style="font-family: Verdana, Arial; font-weight:bold;">
+					<h:outputLabel id="lblTitulo" value="*Titulo:" for="titulo"
+						style="float:right;" />
+					<p:inputText id="titulo" size="60" value="#{dvdBean.dvd.titulo}"
+						required="true" requiredMessage="Campo [Titulo] es requerido." />
+
+
+					<h:outputLabel id="lblPrecio" value="*Precio:" for="precio"
+						style="float:right;" />
+					<p:inputText id="precio" size="4" value="#{dvdBean.dvd.precio}"
+						required="true" requiredMessage="Campo [Precio] es requerido."
+						validatorMessage="Campo [Precio] contiene errores. Verifique.">
+						<f:validateDoubleRange minimum="1" />
+					</p:inputText>
+
+					<h:outputLabel id="lblAnno" value="*Anno:" for="anno"
+						style="float:right;" />
+					<p:inputText id="anno" size="4" value="#{dvdBean.dvd.anno}"
+						required="true" requiredMessage="Campo [Anno] es requerido."
+						validatorMessage="Campo [Anno] contiene errores. Verifique.">
+						<f:validateLongRange minimum="1900" maximum="2013" />
+					</p:inputText>
+
+					<h:outputLabel id="lblEdad" value="*Edad:" for="edad"
+						style="float:right;" />
+					<p:inputText id="edad" size="2" value="#{dvdBean.dvd.grupoEdad}"
+						required="true" requiredMessage="Campo [Edad] es requerido."
+						validatorMessage="Campo [Edad] contiene errores. Verifique.">
+						<f:validateLongRange minimum="5" />
+					</p:inputText>
+
+					<h:outputLabel id="lblGenero" value="*Genero:" for="genero"
+						style="float:right;" />
+					<h:selectOneMenu id="genero" value="#{dvdBean.generoID}"
+						required="true" requiredMessage="Campo [Genero] es obligatorio">
+						<f:selectItem itemLabel="Seleccione..." itemValue="" />
+						<f:selectItems value="#{generoBean.generos}" var="gen"
+							itemLabel="#{gen.nombre}" itemValue="#{gen.id}" />
+					</h:selectOneMenu>
+
+					<p:commandButton value="Agregar DVD" action="#{dvdBean.save()}"
+						update="frmGeneral, messages, dtDVDs" />
+				</h:panelGrid>
+
+
+				<p:spacer height="10" />
+
+				<p:dataTable id="dtDVDs" emptyMessage="No se encontraron registros"
+					value="#{dvdBean.dvds}" var="d"
+					style="text-align:center; font-weight: bold;">
+					<f:facet name="header">
+						<h:outputText value="Registro de DVDs" />
+					</f:facet>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Titulo" />
+						</f:facet>
+						<h:outputText value="#{d.titulo}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Precio" />
+						</f:facet>
+						<h:outputText value="#{d.precio}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Anno" />
+						</f:facet>
+						<h:outputText value="#{d.anno}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Edad" />
+						</f:facet>
+						<h:outputText value="#{d.grupoEdad}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Genero" />
+						</f:facet>
+						<h:outputText value="#{d.genero.nombre}" />
+					</p:column>
+
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Eliminar" />
+						</f:facet>
+						<f:ajax event="click" render="@form"
+							listener="#{dvdBean.remove(d)}">
+							<h:commandLink value="Eliminar" />
+						</f:ajax>
+					</p:column>
+
+					<f:facet name="footer">
+
+						<h:outputText
+							value="Hay un total de #{dvdBean.count} DVD(s) registrados en el sistema." />
+					</f:facet>
+
+				</p:dataTable>
+
+			</p:fieldset>
+
+		</h:form>
+
+	</h:body>
+
+</f:view>
+
+
+</html>

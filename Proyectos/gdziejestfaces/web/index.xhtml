@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui">  
+    <h:body>
+
+        <ui:composition template="/template/commonLayout.xhtml">
+
+            <ui:define name="content">
+            <p:pieChart id="sample" value="#{index.pieModel}" legendPosition="w"  
+                title="Sample Pie Chart" style="width:400px;height:300px" /> 
+
+                <h:dataTable id="movieClipsTable" var="movieClip"   
+                             value="#{index.paczki}"   
+                             rows="5">  
+
+                    <h:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Clip Title" />  
+                        </f:facet>  
+                        <h:panelGrid >  
+                            <h:outputText value="#{movieClip.numer}"/>  
+
+                        </h:panelGrid>  
+                    </h:column>  
+                    <h:column>  
+                        <f:facet name="header">  
+                            <h:outputText value="Clip Title" />  
+                        </f:facet>  
+                        <h:panelGrid >  
+                            <h:outputText value="#{movieClip.firma}"/>  
+
+                        </h:panelGrid>  
+                    </h:column>  
+                </h:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+
+    </h:body>
+
+
+</html>

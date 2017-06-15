@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+
+
+	<p:panelMenu style="width:180px">
+		<p:submenu label="Account">
+			<p:menuitem>
+				<h:outputLink
+					value="#{request.contextPath}/pages/accountSummary.jsf">Account Summary</h:outputLink>
+			</p:menuitem>
+		</p:submenu>
+		<p:submenu label="Admin">
+			
+				<p:menuitem>
+					<h:outputLink
+						value="#{request.contextPath}/pages/admin/userSummary.jsf">User Summary</h:outputLink>
+				</p:menuitem>
+			
+			<p:menuitem>
+				<h:outputLink
+					value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
+			</p:menuitem>
+		</p:submenu>
+	</p:panelMenu>
+
+
+</ui:composition>
+</html>

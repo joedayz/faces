@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+
+			<h:form>
+				<h:panelGrid>
+					<h:selectOneRadio value="#{dynamicUpdateBean.display}">
+						<f:selectItem itemLabel="Show" itemValue="true" />
+						<f:selectItem itemLabel="Hide" itemValue="false" />
+						<a4j:ajax execute="@this" render="wonderPanel"/>
+					</h:selectOneRadio>
+				</h:panelGrid>
+				<h:panelGrid id="wonderPanel">
+					<h:dataTable id="wonderList" value="#{wonderListBean.list}"
+						var="wonder" rendered="#{dynamicUpdateBean.display}">
+						<f:facet name="header">7 Wonders of The World</f:facet>
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{wonder.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Location</f:facet>
+							<h:outputText value="#{wonder.location}" />
+						</h:column>
+					</h:dataTable>
+				</h:panelGrid>
+			</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

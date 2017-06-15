@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS `deportivo`.`t_examenmedico`;
+CREATE TABLE  `deportivo`.`t_examenmedico` (
+  `Co_ExamenMedico` int(11) NOT NULL AUTO_INCREMENT,
+  `Co_Jugador` int(11) NOT NULL,
+  `Nu_Talla` double NOT NULL,
+  `Tx_ExamenSangre` varchar(255) NOT NULL,
+  `Tx_ExamenOrina` varchar(255) NOT NULL,
+  `Nu_AlturaPromedioSalto` double NOT NULL,
+  `Tx_Temporada` varchar(255) NOT NULL,
+  `Nu_Resistencia` double NOT NULL,
+  `Nu_LongitudMuslo` double NOT NULL,
+  `Nu_LongitudCintura` double NOT NULL,
+  `Nu_LongitudPecho` double NOT NULL,
+  `Nu_LongitudAntebrazo` double NOT NULL,
+  `Nu_LongitudBrazo` double NOT NULL,
+  `Nu_LongitudCuello` double NOT NULL,
+  `Nu_Peso` double NOT NULL,
+  PRIMARY KEY (`Co_ExamenMedico`,`Co_Jugador`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

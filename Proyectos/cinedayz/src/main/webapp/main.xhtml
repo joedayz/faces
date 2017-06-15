@@ -1,0 +1,63 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<title><ui:insert name="title">PrimeFaces ShowCase</ui:insert>
+		</title>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+		<link type="text/css" rel="stylesheet" />
+	</h:head>
+
+	<h:body>
+
+		<p:layout fullPage="true">
+
+			<p:layoutUnit position="top" height="300" resizable="true"
+				closable="false" collapsible="false">
+				<p:breadCrumb>
+					<p:menuitem value="Categories" url="#" />
+					<p:menuitem value="Merchandizing" url="venta/merchandize.jspx" />
+					<p:menuitem value="Registro" url="registro/registro.jspx" />
+					<p:menuitem value="Comentarios" url="#" />
+					<p:menuitem value="Compra OnLine" url="#" />
+
+				</p:breadCrumb>
+				<h:form>
+					<ui:include src="/cartelera/carrousel.xhtml" />
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="bottom" height="25" resizable="true"
+				closable="true" collapsible="true">
+				<h:outputText value="South unit content." />
+			</p:layoutUnit>
+
+
+			<p:layoutUnit position="right" width="200" resizable="true"
+				closable="true" collapsible="true">
+				<h:form>
+
+					<ui:include src="/cartelera/cartelera.xhtml" />
+					<ui:include src="/cartelera/dashboard.xhtml" />
+				</h:form>
+
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+
+				<ui:include src="/cartelera/peliculas.xhtml" />
+
+
+			</p:layoutUnit>
+
+		</p:layout>
+	</h:body>
+
+</f:view>
+</html>
+

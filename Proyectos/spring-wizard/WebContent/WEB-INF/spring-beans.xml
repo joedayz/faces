@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:annotation-config />
+
+	<bean id="service" class="com.mycompany.service.OrderService"
+		init-method="create" scope="session" />
+
+	<bean id="barBean" class="com.mycompany.web.BarBean" scope="request">
+		<property name="orderService">
+			<ref bean="service" />
+		</property>
+	</bean>
+
+	<bean id="wizardBean" class="com.mycompany.web.WizardBean" scope="request">
+		<property name="startPage" value="/page1.xhtml" />
+		<property name="orderService">
+			<ref bean="service" />
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,24 @@
+<ice:form xmlns:ice="http://www.icesoft.com/icefaces/component"
+          xmlns:app="http://www.arpl.com/tlds/app">
+
+   <!-- main menu declaration  -->
+   <ice:panelGroup>
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+         <tr>
+            <td width="80%" valign="top">
+                <ice:menuBar id="menuBar" orientation="#{menuBarBean.orientation}"  >
+
+                  <ice:menuItems value="#{menuBarBean.menuModel}" />
+
+               </ice:menuBar>
+            </td>
+            <td rowspan="2" valign="top" width="18%" align="right">
+               <ice:outputConnectionStatus  />
+            </td>
+            <td>
+               &#160;
+            </td>
+         </tr>
+      </table>
+   </ice:panelGroup>
+</ice:form>

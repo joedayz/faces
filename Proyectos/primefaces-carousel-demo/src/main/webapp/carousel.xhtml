@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+<f:loadBundle var="msg" basename="resources.messages" />
+<h:head>
+	<title><h:outputText value="#{msg.title}" />
+	</title>
+</h:head>
+<h:body>
+	<div>
+		<p:carousel id="photo-carousel" value="#{imageBean.images}"
+			var="image" rows="3">
+			<h:panelGrid cellpadding="5" style="width: 266px; height: 200px;"
+				columns="1">
+				<p:graphicImage value="#{photoStreamer.fileContent}">
+					<f:param id="photo_id" name="photo_id" value="#{image.id}" />
+				</p:graphicImage>
+				<h:outputText value="#{image.title}" />
+				<h:outputText value="#{image.description}" />
+			</h:panelGrid>
+		</p:carousel>
+	</div>
+</h:body>
+</html>

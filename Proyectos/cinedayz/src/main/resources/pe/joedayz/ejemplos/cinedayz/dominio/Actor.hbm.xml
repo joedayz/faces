@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.Actor" table="actor" >
+	
+		<id name="codigoActor" column="actcodig" length="10">
+			<generator class="assigned" />
+		</id>		
+		<property name="nombre" column="actnombr" length="20" />
+		<property name="apellido" column="actapell" length="20" />
+	  	<property name="url" column="acturlac" length="20" />
+		
+	</class>
+</hibernate-mapping>

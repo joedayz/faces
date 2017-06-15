@@ -1,0 +1,240 @@
+<ui:composition
+    template="/WEB-INF/templates/mainTemplate.jspx"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+
+    <ui:define name="content">
+        <h1><h:outputText value="#{ msg['titulo.pagina.MantenimientoJugador']}" /></h1>
+        <ice:form id="frmMantenimientoJugador">
+            <ice:panelGrid columns="1" id="panMantenimientoJugador" styleClass="panelBox" width="100%">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td align="left">
+                            <ice:outputLabel  for="txtcodigo"  value="#{msg['label.codigo']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txtcodigo"
+                                           value="#{mantenimientoJugador.codigo}" size="32" disabled="true" />
+                         
+                        </td>
+
+                        <td align="left">
+                            <ice:outputLabel  for="txttelefono" value="#{msg['label.telefono']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txttelefono"
+                            value="#{mantenimientoJugador.telefono}" size="32" required="true" partialSubmit="true"  >
+                            <f:validator validatorId="deportivoAppValidator" />                
+                            </ice:inputText>
+                            <ice:message id="msgTelefono" for="txttelefono" style="color:red; line-height:200%;"/>
+
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <ice:outputLabel for="txtnombre" value="#{msg['label.nombre']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txtnombre"
+                                           value="#{mantenimientoJugador.nombre}" size="32" required="true" partialSubmit="true"/>
+                             <ice:message id="msgNombre" for="txtnombre" style="color:red; line-height:200%;"/>
+
+                        </td>
+
+                        <td align="left">
+                            <ice:outputLabel for="txtcontrato" value="#{msg['label.contrato']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txtcontrato"
+                                           value="#{mantenimientoJugador.contrato}" size="32" required="true"  partialSubmit="true" />
+                             <ice:message id="msgContrato" for="txtcontrato" style="color:red; line-height:200%;"/>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <ice:outputLabel for="txtapellidoPaterno" value="#{msg['label.apellidoPaterno']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txtapellidoPaterno"
+                                           value="#{mantenimientoJugador.apellidoPaterno}" size="32" required="true" partialSubmit="true" />
+                             <ice:message id="msgApellidoPaterno" for="txtapellidoPaterno" style="color:red; line-height:200%;"/>
+
+                        </td>
+
+                        <td align="left">
+                            <ice:outputLabel id="lblposicion" value="#{msg['label.posicion']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:selectOneMenu id="cboPosicion" 
+                                               value="#{mantenimientoJugador.selectedPosicion}" 
+                                               partialSubmit="true" required="true" >
+                                <f:selectItems id="cboBuscarSubGrupo"
+                                               value="#{mantenimientoJugador.lstPosicion}" />
+                            </ice:selectOneMenu>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td align="left">
+                            <ice:outputLabel for="txtapellidoMaterno" value="#{msg['label.apellidoMaterno']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txtapellidoMaterno"
+                                           value="#{mantenimientoJugador.apellidoMaterno}" size="32" required="true"  partialSubmit="true"/>
+                           <ice:message id="msgApellidoMaterno" for="txtapellidoMaterno" style="color:red; line-height:200%;"/>
+
+                        </td>
+                        <td align="left">
+                            <ice:outputLabel id="lblfecha" value="#{msg['label.fecha']}" />
+                        </td>
+                        <td align="left">
+                            <ice:selectInputDate id="datFecha" renderMonthAsDropdown="true" renderYearAsDropdown="true"
+                                                 value="#{mantenimientoJugador.fecha}"
+                                                 title="#{msgs['title.fecha']}"
+                                                 renderAsPopup="true"
+                                                 partialSubmit="false"
+                                                 required="true">
+                                <f:convertDateTime pattern="dd/MM/yy"
+                                                   timeZone="#{mantenimientoJugador.timeZone}"/>
+                            </ice:selectInputDate>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <ice:outputLabel for="txtdireccion"  value="#{msg['label.direccion']}"/>
+                        </td>
+                        <td align="left">
+                            <ice:inputText id="txtdireccion"
+                                           value="#{mantenimientoJugador.direccion}" size="32" required="true"   />
+                           <ice:message id="msgDireccion" for="txtdireccion" style="color:red; line-height:200%;"/>
+
+                        </td>
+
+                    </tr>
+                    
+
+                </table>
+            </ice:panelGrid>
+
+            <ice:panelGroup styleClass="clearer" />
+            <ice:panelGrid id="panButtonJugador" width="100%" >
+                <table width="100%" border="0">
+                    <tr>
+                        <td width="10%">
+                            <ice:commandButton action="#{mantenimientoJugador.btnIngresarActionPerformed}" id="btnIngresar" value="#{msg['btn.ingresar']}"    styleClass="btn" />
+
+                        </td>
+                        <td width="10%">
+                            <ice:commandButton actionListener="#{mantenimientoJugador.btnEliminarActionPerformed}" id="btnEliminar" value="#{msg['btn.eliminar']}" partialSubmit="true" styleClass="btn" />
+
+                        </td>
+
+                        <td width="10%">
+                            <ice:commandButton actionListener="#{mantenimientoJugador.btnModificarActionPerformed}" id="btnActualizar" value="#{msg['btn.actualizar']}"  partialSubmit="true" styleClass="btn" />
+
+                        </td>
+                        <td   width="10%">
+                            <ice:commandButton action="#{mantenimientoJugador.btnlimpiarActionPerformed}" id="btnLimpiar" value="#{msg['btn.limpiar']}"  partialSubmit="true" styleClass="btn" />
+
+                        </td>
+                      
+
+                    </tr>
+
+                </table>
+            </ice:panelGrid>
+            <ice:panelGroup  id="panelListaJugador"  scrollWidth="100%" scrollHeight="45%" style="border: 0px ; left: 0px;top:350px; position: absolute; ">
+
+                <ice:dataTable id="tbllistadoJugador"
+                               var="item" varStatus="status"
+                               value="#{mantenimientoJugador.jugadores}"
+                               width="100%"
+                               columnWidths="5%,15%,15%,15%,10%,10%,10%,5%,5%" >
+
+                    <ice:column  style="font-size: 10px;text-align:center;" >
+
+                        <ice:rowSelector id="selected"
+                                         value="#{item.selectedModificar}" enhancedMultiple="false"
+                                         selectionListener="#{mantenimientoJugador.rowSelectionListener}"
+                                         preStyleOnSelection="true"/>
+
+                        <f:facet name="header"  >
+                            <ice:outputText id="columna1"  value="#{msg['table.header.codigo']}" style="width:25%;"/>
+                        </f:facet>
+                        <ice:outputText id="codigo"
+                                        value="#{item.codigo}" />
+                    </ice:column>
+
+                    <ice:column  style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna3" value="#{msg['table.header.nombre']}"/>
+                        </f:facet>
+                        <ice:outputText id="nombre"
+                                        value="#{item.nombre}"/>
+                    </ice:column>
+                    <ice:column  style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna4" value="#{msg['table.header.apellidoPaterno']}"/>
+                        </f:facet>
+                        <ice:outputText id="apellidoPaterno"
+                                        value="#{item.apellidoPaterno}"/>
+                    </ice:column>
+                    <ice:column  style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna5" value="#{msg['table.header.apellidoMaterno']}"/>
+                        </f:facet>
+                        <ice:outputText id="apellidoMaterno"
+                                        value="#{item.apellidoMaterno}"/>
+                    </ice:column>
+
+                    <ice:column   style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna6" value="#{msg['table.header.contrato']}"/>
+                        </f:facet>
+                        <ice:outputText id="contrato"
+                                        value="#{item.contrato}" />
+                    </ice:column>
+                    <ice:column   style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna7" value="#{msg['table.header.fecha']}"/>
+                        </f:facet>
+                        <ice:outputText id="fecha"
+                                        value="#{item.fecha}" >
+
+                            <f:convertDateTime pattern="dd/MM/yy"
+                                               timeZone="#{mantenimientoJugador.timeZone}"/>
+                        </ice:outputText>
+                    </ice:column>
+                    <ice:column   style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna8" value="#{msg['table.header.posicion']}"/>
+                        </f:facet>
+                        <ice:outputText id="posicion"
+                                        value="#{item.posicion}" />
+                    </ice:column>
+                    <ice:column style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:selectBooleanCheckbox id="headerCheck"  value="#{mantenimientoJugador.allChecks}" partialSubmit="true"  style="font-size: 10px;"
+                                                       valueChangeListener="#{mantenimientoJugador.selectedCheck}" />
+                        </f:facet>
+                        <ice:selectBooleanCheckbox id="chkSeleccionarJugador"  value="#{item.selectedEliminar}"   style="font-size: 10px;"  />
+                    </ice:column>
+
+                </ice:dataTable>
+            </ice:panelGroup>
+        </ice:form>
+
+
+    </ui:define>
+</ui:composition>

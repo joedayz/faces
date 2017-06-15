@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+
+<body>
+
+
+
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+	<script>
+	function ajaxRequestListener (event){
+		if (event.status == 'begin'){
+			if(!confirm('Are you sure you want change the color?' + '('+event.status+')')) {
+				form.reset();
+				return false;
+			}
+		}
+		else if (event.status == 'complete'){
+			alert('Just before DOM update' + ' ('+event.status+')');
+		}
+		else if (event.status == 'success'){
+			alert('Color changed. We told you so.' + ' ('+event.status+')');
+		}
+	}
+	
+	function ajaxErrorListener (event){
+		alert ('Status: '+event.status + "\nHTTP error: "+event.description );
+	}
+	
+	</script>
+	
+
+			<h:form>
+				<h:panelGrid id="panel" style="background-color: #{bean7.color}">
+					<h:selectOneRadio value="#{bean7.color}">
+						<f:selectItem itemValue="red" itemLabel="Red" />
+						<f:selectItem itemValue="yellow" itemLabel="Yellow" />
+						<f:selectItem itemValue="blue" itemLabel="Blue" />
+						<!--f:ajax event="click" render="panel" onevent="ajaxRequestListener" onerror="ajaxErrorListener"/-->
+						<a4j:ajax render="panel" onbegin="if(!confirm('Are you sure you want change the color')) 
+						{form.reset(); return false;};"
+						oncomplete="alert('Color changed. We told you so.')"
+						onbeforedomupdate="alert('Just before DOM update')" />
+					</h:selectOneRadio>
+				</h:panelGrid>
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+
+
+
+
+</html>

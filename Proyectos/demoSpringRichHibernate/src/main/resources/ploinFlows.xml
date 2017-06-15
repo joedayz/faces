@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flows xmlns="http://www.ploinfaces.org/schema"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.ploinfaces.org/schema http://www.ploinfaces.org/schema/ploinFlows_1.4.xml.xsd">
+
+	<ignoreViews>
+		<view>/page/error/.*</view>
+	</ignoreViews>
+	
+	<!--
+	Every view starting with "/page/useradmin/" is set to be part of the flow.
+    You can enter and leave a flow at any point. If you leave a flow, ploinFaces 
+    removes all attributes that are set for the flow from the HTTP session. 
+    
+    http://www.ploinfaces.org/
+    
+    -->
+    <!--  
+	<flow id="useradmin">
+		<views>
+			<view>/page/useradmin/.*</view>
+		</views>
+		<attributes>
+			<attribute>useradminBean</attribute>
+		</attributes>
+	</flow>
+	-->
+
+</flows>

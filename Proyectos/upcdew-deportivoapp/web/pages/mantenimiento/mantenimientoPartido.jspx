@@ -1,0 +1,107 @@
+<ui:composition
+    template="/WEB-INF/templates/mainTemplate.jspx"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+
+    <ui:define name="content">
+        <h1><h:outputText value="#{ msg['titulo.pagina.MantenimientoPartido']}" /></h1>
+        <ice:form id="frmMantenimientoPartido" >
+          
+   <ice:panelGrid id="panButtonJugador" width="100%" >
+                <table width="100%" border="0">
+                    <tr>
+                        <td width="10%">
+                            <ice:commandButton action="#{mantenimientoPartido.btnNuevoActionPerformed}" id="btnNuevo" value="#{msg['btn.Nuevo']}"    styleClass="btn" />
+
+                        </td>
+
+                        <td  width="90%">
+
+                        <ice:messages style="color:red;" />
+                        </td>
+
+                    </tr>
+
+                </table>
+            </ice:panelGrid>
+          
+          
+                <ice:dataTable id="tbllistadoPartido" 
+                               var="item" varStatus="status"
+                               value="#{mantenimientoPartido.partidos}" 
+                               width="100%"
+                               columnWidths="5%,15%,15%,20%,15%,15%,15%" >
+
+                      <ice:column style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                        <ice:outputText id="headerConsultar" title="Consulta Partido seleccionada."
+                                  value="Con"/>
+                        </f:facet>
+                        <ice:commandButton id="codigoOrdenReabastecimiento" image="../../images/editgrid.gif" action="#{mantenimientoPartido.btnConsultaPartidoActionPerformed}"
+                                  value="#{item.codigoPartido}">
+                        <f:param id="codigoParidoParameter"  binding="#{mantenimientoPartido.nroPartidoEdit}" value="#{item.codigoPartido}"/>
+                        </ice:commandButton>
+                        </ice:column>
+                    <ice:column  style="font-size: 10px;text-align:center;" >
+
+                        
+                        <f:facet name="header"  >
+                            <ice:outputText id="columna1"  value="#{msg['table.header.codigo']}" style="width:25%;"/>
+                        </f:facet>
+                        <ice:outputText id="codigo"
+                                        value="#{item.codigoPartido}" />
+                    </ice:column>
+
+                    <ice:column  style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna3" value="#{msg['table.header.Campeonato']}"/>
+                        </f:facet>
+                        <ice:outputText id="nombre"
+                                        value="#{item.codigoCampeonato}"/>
+                    </ice:column>
+                    <ice:column  style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna4" value="#{msg['table.header.Fecha']}"/>
+                        </f:facet>
+                        <ice:outputText id="apellidoPaterno"
+                                        value="#{item.fechaPartido}">
+                                            
+                            <f:convertDateTime pattern="dd/MM/yy"
+                                               timeZone="#{mantenimientopartido.timeZone}"/>
+                                       
+                        </ice:outputText>
+                    </ice:column>
+                    <ice:column  style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna5" value="#{msg['table.header.equipoContrario']}"/>
+                        </f:facet>
+                        <ice:outputText id="equipoContrario"
+                                        value="#{item.equipoContrario}"/>
+                    </ice:column>
+
+                    <ice:column   style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna6" value="#{msg['table.header.golesFavor']}"/>
+                        </f:facet>
+                        <ice:outputText id="golesFavor"
+                                        value="#{item.golFavor}" />
+                    </ice:column>
+                    <ice:column   style="font-size: 10px;text-align:center;">
+                        <f:facet name="header">
+                            <ice:outputText id="columna7" value="#{msg['table.header.golesContra']}"/>
+                        </f:facet>
+                        <ice:outputText id="golesContra"
+                                        value="#{item.golContra}" />
+                    </ice:column>
+                  
+                </ice:dataTable>
+            
+        </ice:form>
+
+
+    </ui:define>
+</ui:composition>

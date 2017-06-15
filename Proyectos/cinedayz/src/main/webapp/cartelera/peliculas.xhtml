@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="../principal.xhtml">
+<ui:define name="contenido">
+	 	<h:form  prependId="false">  	
+	 	<p:panel header="Estrenos">
+	 	 <p:dataTable var="pel" value="#{carteleraLista.listadePeliculas}">	 	   
+	 	 <p:column sortBy="#{pel.titulo}">  
+	            <f:facet name="header">titulo  
+             </f:facet>  
+             <h:outputText value="#{pel.titulo}" />  
+         </p:column>  
+   
+         <p:column sortBy="#{pel.paisOrigen}">  
+             <f:facet name="header">Pais  
+             </f:facet>  
+             <h:outputText value="#{pel.paisOrigen}" />  
+         </p:column>  
+         <p:column sortBy="#{pel.genero}">  
+             <f:facet name="header">Genero  
+             </f:facet>  
+             <h:outputText value="#{pel.genero}" />  
+         </p:column>  
+         
+           <p:column style="width:32px">  
+            <p:commandButton update="display" oncomplete="carDialog.show()"  
+                     image="ui-icon ui-icon-search">  
+                 <f:setPropertyActionListener value="#{pel}"  
+                     target="#{carteleraLista.peliculaSeleccionada}" />  
+             </p:commandButton>  
+         </p:column>   
+     </p:dataTable>  
+	 	
+	  <p:dialog header="Actores" widgetVar="carDialog" resizable="true"  
+               width="200" showEffect="explode" hideEffect="explode">  
+   
+         <h:panelGrid columns="2" cellpadding="4">
+
+           <p:column>
+           		<h:outputText style="font-weight:bold;"  value="Actores:"></h:outputText>
+           </p:column>
+           <p:dataList id="display" var="peli" value="#{carteleraLista.listaPeliculaActores}">	 	   
+	 	   		<p:column >				  	 	     	  	              
+           		<h:outputText value="#{peli.actor.nombre} "   /> 
+           		<h:outputText value="#{peli.actor.apellido}" />
+           		</p:column>	 	
+           		
+           <!-- 
+           <h:outputText  value="Emision:" />  
+           <h:outputText value="#{carteleraLista.peliculaSeleccionada.tipoEmision}" />  
+   		   	 -->		
+           		
+           </p:dataList>
+            
+         
+            </h:panelGrid>  
+     </p:dialog>   	
+	 	
+</p:panel>	 	
+	 	</h:form>
+</ui:define>
+</ui:composition>
+</html>

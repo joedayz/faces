@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+
+			<a4j:status id="ajaxStatus" startText="Working..."
+				startStyle="background-color: #ffA500;
+				font-weight:bold; 
+				position: absolute; 
+				left: 520px;
+				top: 1px;
+				width: 100px;" />
+			<h:form>
+				<h:panelGrid>
+					<h:panelGrid columns="3">
+						<h:inputText value="#{ajaxStatusBean.text}" />
+						<a4j:commandButton value="Convert"
+							action="#{ajaxStatusBean.upperCase}" render="upper" />
+					</h:panelGrid>
+					<h:outputText id="upper" value="#{ajaxStatusBean.text}" />
+				</h:panelGrid>
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

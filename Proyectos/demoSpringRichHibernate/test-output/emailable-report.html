@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TestNG:  Unit Test</title>
+<style type="text/css">
+table caption,table.info_table,table.param,table.passed,table.failed {margin-bottom:10px;border:1px solid #000099;border-collapse:collapse;empty-cells:show;}
+table.info_table td,table.info_table th,table.param td,table.param th,table.passed td,table.passed th,table.failed td,table.failed th {
+border:1px solid #000099;padding:.25em .5em .25em .5em
+}
+table.param th {vertical-align:bottom}
+td.numi,th.numi,td.numi_attn {
+text-align:right
+}
+tr.total td {font-weight:bold}
+table caption {
+text-align:center;font-weight:bold;
+}
+table.passed tr.stripe td,table tr.passedodd td {background-color: #00AA00;}
+table.passed td,table tr.passedeven td {background-color: #33FF33;}
+table.passed tr.stripe td,table tr.skippedodd td {background-color: #cccccc;}
+table.passed td,table tr.skippedodd td {background-color: #dddddd;}
+table.failed tr.stripe td,table tr.failedodd td,table.param td.numi_attn {background-color: #FF3333;}
+table.failed td,table tr.failedeven td,table.param tr.stripe td.numi_attn {background-color: #DD0000;}
+tr.stripe td,tr.stripe th {background-color: #E6EBF9;}
+p.totop {font-size:85%;text-align:center;border-bottom:2px black solid}
+div.shootout {padding:2em;border:3px #4854A8 solid}
+</style>
+</head>
+<body>
+<table cellspacing=0 cellpadding=0 class="param">
+<tr><th>Test</th><th class="numi">Methods<br/>Passed</th><th class="numi">Scenarios<br/>Passed</th><th class="numi"># skipped</th><th class="numi"># failed</th><th class="numi">Total<br/>Time</th><th class="numi">Included<br/>Groups</th><th class="numi">Excluded<br/>Groups</th></tr>
+<tr><td style="text-align:left;padding-right:2em">Command line test</td><td class="numi">0</td><td class="numi">0</td><td class="numi_attn">4</td><td class="numi">0</td><td class="numi">6.5 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+</table>
+<a id="summary"></a>
+<table cellspacing=0 cellpadding=0 class="passed">
+<tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Time<br/>(Msecs)</th></tr>
+<tr><th colspan="4">Command line test &#8212; failed (configuration methods)</th></tr>
+<tr class="failedodd"><td rowspan="1">pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest<td><a href="#m1"><b>springTestContextPrepareTestInstance</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr><th colspan="4">Command line test &#8212; skipped (configuration methods)</th></tr>
+<tr class="skippedodd"><td rowspan="2">pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest<td><a href="#m2"><b>springTestContextBeforeTestMethod</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr><tr class="skippedodd"><td><a href="#m3"><b>contextInit</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr><th colspan="4">Command line test &#8212; skipped</th></tr>
+<tr class="skippedodd"><td rowspan="4">pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest<td><a href="#m4"><b>saveUser</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="skippedodd"><td><a href="#m5"><b>getByLoginInformation3</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="skippedodd"><td><a href="#m6"><b>testfindPersisted</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr><tr class="skippedodd"><td><a href="#m7"><b>getByLoginInformation</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr>
+</table>
+<h1>Command line test</h1>
+<a id="m1"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:springTestContextPrepareTestInstance</h2>
+<div style="padding-left:3em">
+<p>Absent Code attribute in method that is not native or abstract in class file javax/faces/lifecycle/Lifecycle</p>
+java.lang.ClassLoader.defineClass1(Native Method)
+<br/>at java.lang.ClassLoader.defineClassCond(ClassLoader.java:631)
+<br/>at java.lang.ClassLoader.defineClass(ClassLoader.java:615)
+<br/>at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:141)
+<br/>at java.net.URLClassLoader.defineClass(URLClassLoader.java:283)
+<br/>at java.net.URLClassLoader.access$000(URLClassLoader.java:58)
+<br/>at java.net.URLClassLoader$1.run(URLClassLoader.java:197)
+<br/>at java.security.AccessController.doPrivileged(Native Method)
+<br/>at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+<br/>at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+<br/>at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+<br/>at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+<br/>at java.lang.Class.getDeclaredMethods0(Native Method)
+<br/>at java.lang.Class.privateGetDeclaredMethods(Class.java:2427)
+<br/>at java.lang.Class.getDeclaredMethods(Class.java:1791)
+<br/>at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.buildLifecycleMetadata(InitDestroyAnnotationBeanPostProcessor.java:196)
+<br/>at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.findLifecycleMetadata(InitDestroyAnnotationBeanPostProcessor.java:178)
+<br/>at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(InitDestroyAnnotationBeanPostProcessor.java:124)
+<br/>at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(CommonAnnotationBeanPostProcessor.java:283)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:830)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:493)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+<br/>at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+<br/>at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+<br/>at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:103)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
+<br/>at org.springframework.test.context.support.DelegatingSmartContextLoader.loadContext(DelegatingSmartContextLoader.java:228)
+<br/>at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:124)
+<br/>at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:148)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+<br/>at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321)
+<br/>at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextPrepareTestInstance(AbstractTestNGSpringContextTests.java:133)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+<br/>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+<br/>at java.lang.reflect.Method.invoke(Method.java:597)
+<br/>at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:74)
+<br/>at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:525)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:202)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:130)
+<br/>at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:173)
+<br/>at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:105)
+<br/>at org.testng.TestRunner.runWorkers(TestRunner.java:1125)
+<br/>at org.testng.TestRunner.privateRun(TestRunner.java:749)
+<br/>at org.testng.TestRunner.run(TestRunner.java:600)
+<br/>at org.testng.SuiteRunner.runTest(SuiteRunner.java:317)
+<br/>at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:312)
+<br/>at org.testng.SuiteRunner.privateRun(SuiteRunner.java:274)
+<br/>at org.testng.SuiteRunner.run(SuiteRunner.java:223)
+<br/>at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+<br/>at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+<br/>at org.testng.TestNG.runSuitesSequentially(TestNG.java:995)
+<br/>at org.testng.TestNG.runSuitesLocally(TestNG.java:920)
+<br/>at org.testng.TestNG.run(TestNG.java:856)
+<br/>at org.infinitest.testrunner.JUnit4Runner.runTest(JUnit4Runner.java:54)
+<br/>at org.infinitest.testrunner.TestRunnerProcess.runTest(TestRunnerProcess.java:64)
+<br/>at org.infinitest.testrunner.TestRunnerProcess.writeTestResultToOutputStream(TestRunnerProcess.java:106)
+<br/>at org.infinitest.testrunner.TestRunnerProcess.main(TestRunnerProcess.java:83)
+<br/>1 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m2"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:springTestContextBeforeTestMethod</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m3"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:contextInit</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m4"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:saveUser</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m5"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:getByLoginInformation3</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m6"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:testfindPersisted</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m7"></a><h2>pe.joedayz.ejemplos.persistence.dao.hibernate.UserDaoTest:getByLoginInformation</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+</body></html>

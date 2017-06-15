@@ -1,0 +1,12 @@
+(Version.java:43) INFO main org.hibernate.cfg.annotations.Version - Hibernate Annotations 3.5.5-Final
+(Environment.java:570) INFO main org.hibernate.cfg.Environment - Hibernate 3.5.5-Final
+(Environment.java:603) INFO main org.hibernate.cfg.Environment - hibernate.properties not found
+(Environment.java:781) INFO main org.hibernate.cfg.Environment - Bytecode provider name : javassist
+(Environment.java:662) INFO main org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+(Version.java:37) INFO main org.hibernate.annotations.common.Version - Hibernate Commons Annotations 3.2.0.Final
+(Version.java:42) INFO main org.hibernate.ejb.Version - Hibernate EntityManager 3.5.5-Final
+(AnnotationBinder.java:529) INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: com.mycompany.entities.DVD
+(QueryBinder.java:86) INFO main org.hibernate.cfg.annotations.QueryBinder - Binding Named query: DVD.findAll => SELECT d FROM DVD d
+(QueryBinder.java:86) INFO main org.hibernate.cfg.annotations.QueryBinder - Binding Named query: DVD.count => SELECT COUNT(d) FROM DVD d
+(QueryBinder.java:86) INFO main org.hibernate.cfg.annotations.QueryBinder - Binding Named query: DVD.findByAno => SELECT d FROM DVD d WHERE d.anno = :anno
+(EntityBinder.java:501) INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity com.mycompany.entities.DVD on table DVD

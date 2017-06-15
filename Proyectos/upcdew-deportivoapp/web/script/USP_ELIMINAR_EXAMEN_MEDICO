@@ -1,0 +1,14 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `deportivo`.`USP_ELIMINAR_EXAMEN_MEDICO` $$
+CREATE PROCEDURE `deportivo`.`USP_ELIMINAR_EXAMEN_MEDICO` (
+IN p_Co_ExamenMedico INT(11),
+IN p_Co_Jugador INT(11)
+)
+BEGIN
+DELETE FROM t_Examenmedico where Co_ExamenMedico=p_Co_ExamenMedico
+and Co_Jugador=p_Co_Jugador;
+
+END $$
+
+DELIMITER ;

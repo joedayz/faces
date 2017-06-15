@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+
+
+	<bean id="sCineDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/cinesummer" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="sCineSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="sCineDataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Cliente.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Pelicula.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Actor.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Cartelera.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/DetCartelera.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Permiso.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Comentario.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Sala.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Local.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Actuacion.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/ShopCart.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Merchandize.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/ShopCartDetail.hbm.xml</value>
+				<value>pe/joedayz/ejemplos/cinedayz/dominio/Asiento.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=true
+			</value>
+		</property>
+	</bean>
+
+</beans>

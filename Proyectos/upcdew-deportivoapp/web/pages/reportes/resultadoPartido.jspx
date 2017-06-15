@@ -1,0 +1,46 @@
+<ui:composition
+    template="/WEB-INF/templates/mainTemplate.jspx"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ice="http://www.icesoft.com/icefaces/component"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+    
+    <ui:define name="content">
+        <ice:form id="frmresultadoPartido">
+           
+            <table  width="100%" align="center" >
+                    <tr>
+                        <td width="33%"></td>
+                        <td width="33%" align="center"> 
+                        <ice:outputChart type="pie3d" 
+                        chartTitle="#{ msg['titulo.reporte.resultadoPartido']}"
+                        labels="Empate, Ganados, Perdidos"
+                        data="#{resultadoPartidoBean.empate}, #{resultadoPartidoBean.ganados},#{resultadoPartidoBean.perdidos}"
+                        colors="#{resultadoPartidoBean.colors}"/>
+                       
+                        </td>
+                        <td width="33%"></td>
+                        </tr>
+                        <tr>
+                            <td width="33%" align="center"> <ice:outputLabel  for="lblg" value="#{msg['label.reporte.partidosGanados']}"/></td>
+                        <td width="33%" align="center"> <ice:outputLabel  for="lble" value="#{msg['label.reporte.partidosEmpatados']}"/></td>
+                        <td width="33%" align="center"> <ice:outputLabel  for="lblp" value="#{msg['label.reporte.partidosPerdidos']}"/></td>
+                        </tr>
+                         <tr>
+                        <td width="33%" align="center"> <ice:outputLabel  for="lblrg" value="#{resultadoPartidoBean.ganados}"/></td>
+                        <td width="33%" align="center"> <ice:outputLabel  for="lblre" value="#{resultadoPartidoBean.empate}"/></td>
+                        <td width="33%" align="center"> <ice:outputLabel  for="lblrg" value="#{resultadoPartidoBean.perdidos}"/></td>
+                        </tr>
+                    
+                </table>
+         
+               
+             
+            
+            
+        </ice:form>
+        
+    </ui:define>
+</ui:composition>

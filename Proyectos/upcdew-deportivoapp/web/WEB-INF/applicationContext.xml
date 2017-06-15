@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+    <!--bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/jdbc.properties" />
+    
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="${jdbc.driverClassName}"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}" /-->
+   
+   
+ 
+
+
+   <bean id="jugadorDaoImplement" class="com.upc.deportivo.dao.ibatis.JugadorDaoImplement" >
+   </bean>
+    <bean id="jugadorImplement" class="com.upc.deportivo.services.JugadorImplement" >
+        <property name="jugadorDao" ref="jugadorDaoImplement"/>
+    </bean>
+    
+     
+    <!--Inyeccion de dependencia de  Jugadores -->
+        
+
+    <bean id="examenMedicoDaoImplement" class="com.upc.deportivo.dao.ibatis.ExamenMedicoDaoImplement" >
+    </bean>
+     <bean id="examenMedicoImplement" class="com.upc.deportivo.services.ExamenMedicoImplement" >
+        <property name="examenMedicoDao" ref="examenMedicoDaoImplement"/>
+    </bean>
+
+     <bean id="examenFisicoDaoImplement" class="com.upc.deportivo.dao.ibatis.ExamenFisicoDaoImplement" >
+    </bean>
+     <bean id="examenFisicoImplement" class="com.upc.deportivo.services.ExamenFisicoImplement" >
+        <property name="examenFisicoDao" ref="examenFisicoDaoImplement"/>
+    </bean>
+
+    <bean id="jugadorPartidoDaoImplement" class="com.upc.deportivo.dao.ibatis.JugadorPartidoDaoImplement" >
+    </bean>
+    <bean id="jugadorPartidoImplement" class="com.upc.deportivo.services.JugadorPartidoImplement" >
+      <property name="jugadorPartidoDao" ref="jugadorPartidoDaoImplement"/>
+      <property name="partidoDao" ref="partidoDaoImplement"/>
+   
+   </bean>
+    
+    
+     <bean id="partidoDaoImplement" class="com.upc.deportivo.dao.ibatis.PartidoDaoImplement" >
+    </bean>
+    <bean id="partidoImplement" class="com.upc.deportivo.services.PartidoImplement" >
+      <property name="partidoDao" ref="partidoDaoImplement"/>
+    </bean>
+    
+   
+</beans>

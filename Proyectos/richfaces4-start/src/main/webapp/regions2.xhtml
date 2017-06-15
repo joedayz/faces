@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+
+	<!--  no trabaja -->
+
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+
+			<h:form>
+				<a4j:region>
+					<h:panelGrid>
+						<h:selectOneMenu id="type" value="#{flowerRegionBean.type}">
+							<f:selectItem itemValue="Roses" itemLabel="Roses" />
+							<f:selectItem itemValue="Tulips" itemLabel="Tulips" />
+							<f:selectItem itemValue="Irises" itemLabel="Irises" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="size" value="#{flowerRegionBean.size}">
+							<f:selectItem itemValue="Small" itemLabel="Small" />
+							<f:selectItem itemValue="Large" itemLabel="Large" />
+							<f:selectItem itemValue="Extra Large" itemLabel="Extra Large" />
+						</h:selectOneMenu>
+						<h:selectOneMenu value="#{flowerRegionBean.vase}">
+							<f:selectItem itemValue="Standard vase" itemLabel="Standard vase" />
+							<f:selectItem itemValue="Premium vase" itemLabel="Premium vase" />
+							<f:selectItem itemValue="No vase" itemLabel="No vase" />
+						</h:selectOneMenu>
+						<h:commandButton value="Buy Flowers!">
+							<a4j:ajax event="click" />
+						</h:commandButton>
+					</h:panelGrid>
+				</a4j:region>
+				<a4j:outputPanel ajaxRendered="true" layout="block">
+					<h:panelGrid>
+						<h:outputText value="#{flowerRegionBean.type}" />
+						<h:outputText value="#{flowerRegionBean.size}" />
+						<h:outputText value="#{flowerRegionBean.vase}" />
+					</h:panelGrid>
+				</a4j:outputPanel>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

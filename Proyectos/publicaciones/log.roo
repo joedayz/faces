@@ -1,0 +1,30 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-14 17:48:17
+project --topLevelPackage com.mycompany --projectName publicaciones --java  6
+jpa setup --provider HIBERNATE --database MYSQL --hostName 127.0.0.1 --databaseName dbpublicacion --userName root --password
+// [failed] database introspect --schema dbpublicacion 
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml.zip
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java;5.1.17.0020
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml.zip
+database introspect --schema dbpublicacion 
+database reverse engineer --schema dbpublicacion --package ~.domain
+perform test
+perform eclipse
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-14 17:57:35
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-14 17:58:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-14 18:00:21
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-14 18:01:27
+web jsf setup --theme VADER 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-14 18:23:36
+web jsf all --package ~.jsf
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-15 00:21:00
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-15 10:06:52
+service --interface ~.Service.PublicacionService --entity ~.domain.Publicacion
+test integration --entity ~.domain.Publicacion
+finder list --class ~.domain.Publicacion 
+// [failed] finder add --finderName findPublicacionsByTituloEquals --class ~.domain.Publicacion
+finder add --finderName findPublicacionsByTituloEquals --class ~.domain.Publicacion
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-15 14:12:02
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-15 17:40:32
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-15 17:40:47

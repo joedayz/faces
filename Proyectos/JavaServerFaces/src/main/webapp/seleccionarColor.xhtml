@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <style type="text/css">
+.box {
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+    border: solid 2px;
+}
+ 
+        </style>
+    </head>
+    <body>
+ 
+        <h1>Pick A Colour</h1>
+ 
+            <h:form>
+                <h:commandButton value="Blue"
+                    action="#{selectorColor.blue}" />
+                <h:commandButton value="Red"
+                    action="#{selectorColor.red}" />
+                <h:commandButton value="Green"
+                    action="#{selectorColor.green}" />
+            </h:form>
+ 
+            <div style="background-color: #{selectorColor.color};" class="box"/>               
+ 
+            <p>(Colour changed at #{selectorColor.currentTime})</p>
+ 
+            <p>(Page loaded at #{selectorColor.currentTime})</p>
+ 
+    </body>
+</html>

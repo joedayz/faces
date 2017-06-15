@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+			<h:form>
+				<input type="button" value="San Francisco"
+					onclick="#{rich:component('cities')}.switchToItem('sf')" />
+				<input type="button" value="Los Angeles"
+					onclick="#{rich:component('cities')}.switchToItem('la')" />
+				<input type="button" value="New York City"
+					onclick="#{rich:component('cities')}.switchToItem('nyc')" />
+				<rich:tabPanel id="cities" style="width:40%"
+					activeItem="#{cityBean.selectedTab}">
+					<rich:tab header="San Francisco" name="sf">
+						<h:outputText value="uno" />
+					</rich:tab>
+					<rich:tab header="Los Angeles" name="la">
+						<h:outputText value="dos" />
+					</rich:tab>
+					<rich:tab header="New York City" name="nyc">
+						<h:outputText value="tres" />
+					</rich:tab>
+				</rich:tabPanel>
+			</h:form>
+
+
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

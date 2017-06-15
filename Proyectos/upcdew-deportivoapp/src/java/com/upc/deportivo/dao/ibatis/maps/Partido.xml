@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PartidoBean">
+
+   <!-- Use type aliases to avoid typing the full classname every time. -->
+   <typeAlias alias="PartidoBean" type="com.upc.deportivo.model.PartidoBean"/>
+
+  <parameterMap id="obtenerPartidoParameter" class="java.util.Map"  >
+    <parameter property="codigoPartido"/>
+   </parameterMap>
+ 
+  <parameterMap id="partidoActualizarParameter" class="java.util.Map"  >
+    <parameter property="codigoPartido"/>
+    <parameter property="codigoCampeonato"/>
+    <parameter property="fechaPartido"  />
+    <parameter property="ciudad" />
+    <parameter property="tipoCancha" />
+    <parameter property="equipoContrario"/>
+    <parameter property="localidad"/>
+    <parameter property="golFavor"/>
+    <parameter property="golContra"/>
+    </parameterMap>
+     
+   <resultMap id="partidoResult" class="com.upc.deportivo.model.PartidoBean">
+    <result property="codigoPartido" column="co_partido"/>
+    </resultMap>
+
+<resultMap id="ListadoPartidoResult" class="PartidoBean">
+    <result property="codigoCampeonato" column="co_campeonato"/>
+    <result property="fechaPartido" column="fe_partido" />
+    <result property="ciudad" column="tx_ciudad"/>
+    <result property="tipoCancha" column="tx_tipoCancha"/>
+    <result property="equipoContrario" column="tx_EquipoContrario"/>
+    <result property="localidad" column="tx_Localidad"/>
+    <result property="golFavor" column="Nu_GolFavor"/>
+    <result property="golContra" column="Nu_GolContra"/>
+    <result property="codigoPartido" column="Co_Partido"/>
+</resultMap>
+
+ <procedure id="obtenerListadoPartidos"   
+   resultMap="ListadoPartidoResult">
+   {call USP_OBTENER_JUGADORES()}
+ </procedure>
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ <procedure id="obtenerPartido"    parameterMap="obtenerPartidoParameter" 
+   resultMap="ListadoPartidoResult">
+   {call USP_OBTENER_PARTIDO(?)}
+ </procedure>
+
+
+
+
+
+<procedure id="actualizarPartido"  parameterMap="partidoActualizarParameter" resultMap="partidoResult">
+   {call USP_INSERTA_PARTIDO(?,?,?,?,?,?,?,?,?)}
+ </procedure>
+
+
+ <procedure id="obtenerPartidos"   
+   resultMap="ListadoPartidoResult">
+   {call USP_OBTENER_PARTIDOS()}
+ </procedure>
+ 
+ 
+ <select id="obtenerCodigoPartido" resultMap="partidoResult">
+      SELECT max(Co_Partido) as 'co_partido'
+      FROM t_partido 
+      
+   </select>
+ 
+</sqlMap>

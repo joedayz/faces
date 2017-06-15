@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="pages/reportes/resultadoPartido.jspx" x="650" y="450" zoom="true"/>
+        <Node id="prueba.jspx" x="150" y="150" zoom="true"/>
+        <Node id="index.jsp" x="400" y="450" zoom="true"/>
+        <Node id="redirect.jsp" x="150" y="450" zoom="true"/>
+        <Node id="header.jspx" x="650" y="150" zoom="true"/>
+        <Node id="pages/mantenimiento/mantenimientoJugador.jspx" x="150" y="600" zoom="true"/>
+        <Node id="pages/mantenimiento/mantenimientoPartido.jspx" x="900" y="300" zoom="true"/>
+        <Node id="pages/login/loginDeportivoApp.jspx" x="150" y="300" zoom="true"/>
+        <Node id="pages/mantenimiento/mantenimientoExamenFisico.jspx" x="900" y="150" zoom="true"/>
+        <Node id="menu.jspx" x="400" y="300" zoom="true"/>
+        <Node id="pages/mantenimiento/mantenimientoExamenMedico.jspx" x="650" y="300" zoom="true"/>
+        <Node id="pages/mantenimiento/mantenimientoJugadorPartido.jspx" x="1150" y="150" zoom="true"/>
+        <Node id="main.jspx" x="400" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

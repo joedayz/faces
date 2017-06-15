@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.DetCartelera" table="detcartelera" >			
+		<id name="detalleCarteleraCodigo" column="dcacodig"  >
+			<generator class="increment" />
+		</id>		
+
+		
+		<many-to-one name="cartelera" column="carcodig"></many-to-one>
+	
+	  	<many-to-one name="sala" column="salcodig"></many-to-one>
+		<property name="horario" column="dcahorar"  />		
+		<property name="precio" column="dcapreci"  />
+		<property name="precioDetalle" column="dcaprede"  />
+	
+	</class>
+		
+	
+</hibernate-mapping>
+
+

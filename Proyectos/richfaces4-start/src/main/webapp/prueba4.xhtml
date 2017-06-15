@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Text:" />
+					<h:inputText id="inputText" value="#{bean2.text}" />
+					<h:outputText value="Echo:" />
+					<h:outputText id="text" value="#{bean2.text}" />
+					<h:outputText value="Count:" />
+					<h:outputText id="count" value="#{bean2.count}" />
+				</h:panelGrid>
+				<h:commandButton value="Submit">
+					<f:ajax render="text count" listener="#{bean2.countListener}" 
+					  execute="inputText"/>
+				</h:commandButton>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

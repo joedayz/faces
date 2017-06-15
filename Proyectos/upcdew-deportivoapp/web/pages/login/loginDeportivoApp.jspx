@@ -1,0 +1,90 @@
+<f:view xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ice="http://www.icesoft.com/icefaces/component"
+        xmlns:c="http://java.sun.com/jstl/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
+
+   <ice:loadBundle basename="com.upc.deportivo.resource.messages" var="msg"/>
+   <ice:outputDeclaration doctypeRoot="HTML"
+                          doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+                          doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+   <html>  
+
+      <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+         <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
+         <link href="../../css/tableLayout.css" rel="stylesheet" type="text/css" />
+         <link href="../../xmlhttp/css/rime/rime.css" rel="stylesheet" type="text/css" />
+         <title><h:outputText value="#{msg['app.titulo']}" /></title>
+      </head>
+      <body>
+         <table id="mainFrame" class="mainFrame">
+            <tr>
+               <td id="top" width="100%" class="header_title" height="50px">
+                  <h:outputText value="#{msg['app.header.titulo']}" />
+               </td>
+            </tr>
+            <tr>
+               <td id="content">
+                  <ice:form id="frmLogin">
+                     <ice:panelGrid columns="2">
+                        <ice:outputLabel id="lblMensaje" value="#{msg['app.mensajeIngreso']}" />
+                        <ice:panelGrid columns="1" id="panLogin" styleClass="panelBox" style="width:280px;" >
+                           <ice:panelGroup styleClass="iceDatTblColHdr">
+                              <ice:outputLabel id="lblInicio" value="#{msg['app.inicioSesion']}" style="width:100%;font-weight:bold;"/>
+                           </ice:panelGroup>
+                           <table cellpadding="0" cellspacing="0" width="100%">
+                              <tr>
+                                 <td width="2%">&#160;</td>
+                                 <td width="30%"><ice:outputLabel id="lblUsuario" value="#{msg['label.usuario']}"/></td>
+                                 <td width="66%" align="right">
+                                    <ice:inputText id="txtUsuario" maxlength="16"
+                                                   value="#{usuarioBean.usuario}"
+                                                   required="true" size="30"/>
+                                 </td>
+                                 <td width="2%"><ice:message id="usuarioMsg" for="txtUsuario" style="color:red;"/></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td colspan="2">&#160;</td>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>&#160;</td>
+                                 <td><ice:outputLabel id="lblClave" value="#{msg['label.clave']}" /></td>
+                                 <td align="right">
+                                    <ice:inputSecret id="txtClave" maxlength="16"
+                                                     value="#{usuarioBean.clave}"
+                                                     required="true" size="30"/>
+                                 </td>
+                                 <td><ice:message id="claveMsg" for="txtClave" style="color:red;"/></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                                 <td colspan="2">&#160;</td>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td colspan="3"><ice:messages globalOnly="true" style="color:red;" /></td>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td colspan="3" align="right">
+                                    <ice:commandButton action="cambioClave" id="btnCambioClave" value="Cambio Clave" styleClass="btn" immediate="true" />
+                                    &#160;
+                                    <ice:commandButton action="#{usuarioBean.btnIngresarActionPerformed}" id="btnIngresar" value="#{msg['btn.ingresar']}" styleClass="btn" />
+                                 </td>
+                                 <td>&#160;</td>
+                              </tr>
+                           </table>
+                        </ice:panelGrid>
+                     </ice:panelGrid>
+                  </ice:form>
+               </td>
+            </tr>
+         </table>
+      </body>
+
+   </html>
+</f:view>

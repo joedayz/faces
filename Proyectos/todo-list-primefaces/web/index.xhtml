@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+    Document   : index
+    Created on : Winter 2012
+    Author     : Gerald.Hurdle@AlgonquinCollege.com
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <!-- TODO :: You will replace this static text title with a message bundle. -->
+        <title>AWESOME Todo List!!! (PrimeFaces)</title>
+    </h:head>
+    <h:body>
+        <p:tabView>
+
+            <!-- TAB :: TODO -->
+            <p:tab id="todoTab" title="Todo CRUDS">
+                <h:form id="newTodoForm">
+                    <!-- PANEL :: ADD NEW TODO -->
+                    <p:panel id="newTodoPanel"
+                             header="New Todo">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel for="newTodoText"
+                                           value="New Todo:" />
+                            <h:inputText id="newTodoText"
+                                         binding="#{controller.newTodoText}"
+                                         required="true"
+                                         valueChangeListener="#{controller.handleNewTodo}" />
+                            <h:message for="newTodoText" />
+                        </h:panelGrid>
+                        <br />
+                        <p:commandButton actionListener="#{controller.handleNewTodo}"
+                                         update="newTodoText todoForm:todoList"
+                                         value="Add Todo" />
+                    </p:panel>
+                </h:form>
+
+                <h:form id="todoForm">
+                    <p:dataTable id="todoList"
+                                 emptyMessage="Nothing Todo!!!"
+                                 value="#{controller.model.todoList}"
+                                 var="todo"
+                                 paginator="true" rows="10"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 widgetVar="todoTable"
+                                 selectionMode="single">
+                        <!-- HEADER :: OPTIONS -->
+                        <f:facet name="header">
+
+                            <p:outputPanel>
+                                <h:outputLabel for="globalFilter"
+                                               style="margin-left: 45%"
+                                               value="Search all fields:" />
+                                <p:inputText id="globalFilter"
+                                             onkeyup="todoTable.filter();"
+                                             style="width: 150px" />
+                            </p:outputPanel>
+                        </f:facet>
+                        <!-- COLUMN :: Date Created -->
+                        <p:column headerText="Date Created"
+                                  filterBy="#{todo.dateCreated}" >
+                            <h:outputText value="#{todo.dateCreated}">
+                                <f:convertDateTime pattern="EEE, MM d, yyyy (h:mm a)"
+                                                   timeZone="EST"
+                                                   type="both" />
+                            </h:outputText>
+                        </p:column>
+
+                        <!-- COLUMN :: Date Modified -->
+                        <p:column headerText="Date Modified"
+                                  filterBy="#{todo.dateModified}" >
+                            <h:outputText value="#{todo.dateModified}" />
+                        </p:column>
+
+                        <!-- COLUMN :: TODO -->
+                        <p:column headerText="Todo"
+                                  filterBy="#{todo.todo}"
+                                  sortBy="#{todo.todo}"
+                                  sortFunction="#{controller.compareTodos}">
+                            <p:cellEditor>  
+                                <f:facet name="output">  
+                                    <h:outputText value="${todo.todo}" />
+                                </f:facet>  
+                                <f:facet name="input">  
+                                    <p:inputText value="#{todo.todo}"
+				                 required="true" />
+                                </f:facet>  
+                            </p:cellEditor>
+                        </p:column>
+
+                        <!-- COLUMN :: CONTROL -->
+                        <p:column style="width: 20%">
+                            <p:column>
+                                <p:rowEditor>
+                                    <p:tooltip value="Edit" />
+                                </p:rowEditor>
+                            </p:column>
+                            
+                            <p:commandLink id="detailsDialogLink"
+                                           immediate="true"
+                                           oncomplete="detailsDialog.show();"
+                                           styleClass="ui-icon ui-icon-search"
+                                           title="DetailsDialog"
+                                           update="detailsTodo detailsDateCreated detailsDateModified">
+                                <f:setPropertyActionListener value="#{todo}"
+                                                             target="#{controller.selectedTodo}" />
+                                
+                            </p:commandLink>
+                            <p:commandLink id="todoListDelete"
+                                           styleClass="ui-icon ui-icon-trash"
+                                           title="Delete"
+                                           update="todoForm:todoList">
+                                <p:collector value="#{todo}"
+                                             removeFrom="#{controller.model.todoList}" />
+                            </p:commandLink>
+                        </p:column>
+
+                        <!-- FOOTER :: NUMBER OF TODOs -->
+                        <f:facet name="footer">
+                            <h:outputLabel value="Number of Todos: " />
+                            <h:outputText value="${controller.model.numberOfTodos}" />
+                        </f:facet>
+
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+
+            <!-- TAB :: ABOUT -->
+            <p:tab id="aboutTab" title="About">
+                <ui:include src="./about.xhtml" />
+            </p:tab>
+
+            <!-- TAB :: FEATURES -->
+            <p:tab id="featuresTab" title="Features">
+                <ui:include src="features.xhtml" />
+            </p:tab>
+
+        </p:tabView>
+
+        <!-- DIALOG :: DETAILS -->
+        <p:dialog id="detailsDialog"
+                  header="Details Dialog"
+                  hideEffect="blink"
+                  modal="true"
+                  showEffect="blink"
+                  width="500"
+                  widgetVar="detailsDialog">
+            <h:panelGrid id="todoDetails"
+                         cellpadding="4"
+                         columns="2"
+                         width="100%">
+                <h:outputLabel value="Todo:" />
+                <h:outputText id="detailsTodo"
+                              value="${controller.selectedTodo.todo}" />
+                    
+                <h:outputLabel value="Date Created:" />
+                <h:outputText id="detailsDateCreated"
+                              value="${controller.selectedTodo.dateCreated}" />
+
+                <h:outputLabel value="Date Modified:" />
+                <h:outputText id="detailsDateModified"
+                              value="${controller.selectedTodo.dateModified}" />
+            </h:panelGrid>
+        </p:dialog>
+
+    </h:body>
+</html>
+

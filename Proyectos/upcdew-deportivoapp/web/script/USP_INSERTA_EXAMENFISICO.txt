@@ -1,0 +1,60 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `deportivo`.`USP_INSERTA_EXAMENFISICO` $$
+CREATE PROCEDURE `USP_INSERTA_EXAMENFISICO`(
+IN p_Co_ExamenFisico VARCHAR(255),
+IN p_Co_Jugador VARCHAR(255),
+IN p_Tx_Descripcion VARCHAR(255),
+IN p_Tx_TipoExamenFisico VARCHAR(255),
+IN p_Nu_Resultado DOUBLE,
+IN p_Tx_Temporada VARCHAR(255)
+ )
+BEGIN
+ DECLARE nExistExamenFisico INT DEFAULT 0;
+    DECLARE txn_error INTEGER DEFAULT 0 ;
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN
+     SET txn_error=1;
+    END;
+  START TRANSACTION;
+
+      SELECT COUNT(*)
+    INTO nExistExamenFisico
+    FROM T_ExamenFisico
+    WHERE Co_ExamenFisico=p_Co_ExamenFisico;
+   IF nExistExamenFisico =0 THEN
+    INSERT INTO T_ExamenFisico
+         (
+            Co_Jugador,
+            Tx_Descripcion,
+            Tx_TipoExamenFisico,
+            Nu_Resultado,
+            Tx_Temporada
+         )
+      VALUES
+         (
+            p_Co_Jugador,
+            p_Tx_Descripcion,
+            p_Tx_TipoExamenFisico,
+            p_Nu_Resultado,
+            p_Tx_Temporada
+            ) ;
+    ELSE
+
+    UPDATE T_ExamenFisico SET
+            Co_Jugador=p_Co_Jugador,
+            Tx_Descripcion=p_Tx_Descripcion,
+            Tx_TipoExamenFisico=p_Tx_TipoExamenFisico,
+            Nu_Resultado=p_Nu_Resultado,
+            Tx_Temporada =p_Tx_Temporada where Co_ExamenFisico=p_Co_ExamenFisico;
+
+END IF ;
+   IF txn_error THEN
+       ROLLBACK;
+       SELECT 'Transfer aborted ';
+   ELSE
+         COMMIT;
+   END IF;
+
+END $$
+
+DELIMITER ;

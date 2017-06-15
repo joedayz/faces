@@ -1,0 +1,11 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `deportivo`.`USP_OBTENER_JUGADORES` $$
+CREATE PROCEDURE `USP_OBTENER_JUGADORES`()
+BEGIN
+
+  select  Co_Jugador,tx_Telefono,No_Jugador,Tx_ApellidoPaterno,Tx_ApellidoMaterno,Tx_Direccion,Tx_Contrato,Fe_Registro,Tx_Posicion from t_jugador ;
+
+END $$
+
+DELIMITER

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">  
+            <p:panel header="AutoComplete" toggleable="true" id="panel">  
+                <h:panelGrid columns="2" cellpadding="5">  
+
+                    <h:outputLabel value="Simple :" for="acSimple" />  
+                    <p:autoComplete id="acSimple" value="#{autoCompleteBean.txt1}"   
+                                    completeMethod="#{autoCompleteBean.complete}"/>  
+
+                    <h:outputLabel value="Min Length (3) :" for="acMinLength" />  
+                    <p:autoComplete id="acMinLength" minQueryLength="3"   
+                                    value="#{autoCompleteBean.txt2}" effect="fade"  
+                                    completeMethod="#{autoCompleteBean.complete}"/>  
+
+                    <h:outputLabel value="Delay(1000) :" for="acDelay" />  
+                    <p:autoComplete id="acDelay" queryDelay="1000"   
+                                    value="#{autoCompleteBean.txt3}" effect="blind"  
+                                    completeMethod="#{autoCompleteBean.complete}"/>  
+
+                    <h:outputLabel value="Max Results(5) :" for="acMaxResults" />  
+                    <p:autoComplete id="acMaxResults" maxResults="5"   
+                                    value="#{autoCompleteBean.txt4}"   
+                                    completeMethod="#{autoCompleteBean.complete}"/>  
+
+                    <h:outputLabel value="Force Selection :" for="acForce" />  
+                    <p:autoComplete id="acForce" forceSelection="true"   
+                                    value="#{autoCompleteBean.txt5}"   
+                                    completeMethod="#{autoCompleteBean.complete}"/>  
+
+                    <h:outputLabel value="DropDown :" for="dd" />  
+                    <p:autoComplete id="dd" dropdown="true" value="#{autoCompleteBean.txt6}"   
+                                    completeMethod="#{autoCompleteBean.complete}" />  
+
+                </h:panelGrid>  
+            </p:panel>  
+
+            <p:commandButton value="Submit" id="submit" update="display" oncomplete="dialog.show()" />  
+
+            <p:dialog header="Values" widgetVar="dialog"  
+                      showEffect="fold" hideEffect="fold" width="200">  
+
+                <h:panelGrid id="display" columns="2" cellpadding="5">  
+                    <h:outputText value="Value 1: " />  
+                    <h:outputText value="#{autoCompleteBean.txt1}" />   
+
+                    <h:outputText value="Value 2: " />  
+                    <h:outputText value="#{autoCompleteBean.txt2}" />   
+
+                    <h:outputText value="Value 3: " />  
+                    <h:outputText value="#{autoCompleteBean.txt3}" />   
+
+                    <h:outputText value="Value 4: " />  
+                    <h:outputText value="#{autoCompleteBean.txt4}" />   
+
+                    <h:outputText value="Value 5: " />  
+                    <h:outputText value="#{autoCompleteBean.txt5}" />   
+
+                    <h:outputText value="Value 6: " />  
+                    <h:outputText value="#{autoCompleteBean.txt6}" />   
+                </h:panelGrid>  
+
+            </p:dialog>  
+
+        </h:form>  
+    </h:body>
+</html>
+

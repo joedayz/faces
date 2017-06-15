@@ -1,0 +1,57 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	    		xmlns:ui="http://java.sun.com/jsf/facelets"
+	  			xmlns:h="http://java.sun.com/jsf/html"
+	  			xmlns:f="http://java.sun.com/jsf/core"
+	  			xmlns:p="http://primefaces.org/ui"
+				template="../templates/template.xhtml">
+	<ui:define name="content">
+
+
+
+			<h:form id="form">
+
+				<p:panel id="panel" header="Account Details">
+
+					<p:messages id="msgs" />
+
+					<h:panelGrid columns="1">
+
+
+						<h:outputText value="Account Id: " />
+						<h:outputText value="#{accountForm.account.entityId}" />
+
+						<h:outputLabel value="Name: " for="name" />
+						<p:inputText id="name" value="#{accountForm.account.name}"
+							required="true" label="Name">
+							<f:validateLength  minimum="2" />
+						</p:inputText>
+
+
+						<h:outputLabel value="Number: " for="number" />
+						<p:inputText id="number" value="#{accountForm.account.number}"
+							required="true" label="Number">
+							<f:validateLength  minimun="2" maximum="9" />
+						</p:inputText>
+
+						<h:inputHidden value="#{accountForm.account.entityId}" />
+
+					</h:panelGrid>
+
+					<p:commandButton id="save" value="Update" update="panel"
+						action="#{accountForm.updateAccount}"  />
+
+
+					<p:commandButton id="delete" value="Delete" 
+						action="#{accountForm.deleteAccount}" />
+
+					<p:commandButton id="cancel" value="Cancel" action="#{accountForm.cancelAccount}"
+						immediate="true" />
+
+				</p:panel>
+
+			</h:form>
+
+	
+	</ui:define>
+</ui:composition>

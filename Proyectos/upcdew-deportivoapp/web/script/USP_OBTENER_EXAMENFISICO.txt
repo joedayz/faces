@@ -1,0 +1,11 @@
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `deportivo`.`USP_OBTENER_EXAMENFISICO` $$
+CREATE PROCEDURE `USP_OBTENER_EXAMENFISICO`()
+BEGIN
+
+  select  Co_ExamenFisico,Co_Jugador,Tx_Descripcion,Tx_TipoExamenFisico,Nu_Resultado,Tx_Temporada from t_examenfisico ;
+
+END $$
+
+DELIMITER

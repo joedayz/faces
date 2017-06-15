@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ExamenFisicoBean">
+
+   <!-- Use type aliases to avoid typing the full classname every time. -->
+   <typeAlias alias="ExamenFisicoBean" type="com.upc.deportivo.model.ExamenFisicoBean"/>
+
+  <parameterMap id="examenFisicoActualizarParameter" class="java.util.Map"  >
+    <parameter property="co_ExamenFis" />
+    <parameter property="codigo" />
+    <parameter property="descripcion" />
+    <parameter property="tipoExamenFisico" />
+    <parameter property="resultado" />
+    <parameter property="temporada"/>
+   </parameterMap>
+   
+   <parameterMap id="examenFisicoEliminarParameter" class="java.util.Map"  >
+    <parameter property="co_ExamenFis" />
+   
+   </parameterMap>
+
+   <parameterMap id="examenFisicoObtenerListadoParameter" class="java.util.Map"  >
+   <parameter property="codigo" />
+   </parameterMap>
+
+
+<resultMap id="ListadoExamenFisicoResult" class="ExamenFisicoBean">
+    <result property="co_ExamenFis" column="Co_ExamenFisico"/>
+    <result property="codigo" column="Co_Jugador"/>
+    <result property="descripcion" column="Tx_Descripcion"/>
+    <result property="tipoExamenFisico" column="Tx_TipoExamenFisico"/>
+    <result property="resultado" column="Nu_resultado"/>
+    <result property="temporada" column="Tx_Temporada"/>
+   
+</resultMap>
+
+ <procedure id="obtenerListadoExamenFisico"
+   resultMap="ListadoExamenFisicoResult" parameterMap="examenFisicoObtenerListadoParameter">
+   {call USP_OBTENER_EXAMENESFISICOS(?)}
+ </procedure>
+ 
+ 
+ 
+  <procedure id="actualizarExamenFisico"  parameterMap="examenFisicoActualizarParameter"  >
+   {call USP_INSERTA_EXAMENFISICO(?,?,?,?,?,?)}
+ </procedure>
+
+
+<procedure id="eliminarExamenFisico"  parameterMap="examenFisicoEliminarParameter"  >
+   {call USP_ELIMINAR_EXAMENFISICO(?)}
+ </procedure>
+
+
+
+</sqlMap>

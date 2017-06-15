@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<f:view contentType="text/html">
+<h:head>
+        <title>
+                <ui:insert name="title">Cine UPC</ui:insert>
+        </title>
+   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+   <link type="text/css" rel="stylesheet"  />
+</h:head>
+
+
+<h:body>
+   <table align="center" width=""><tr>
+       <td>
+       <table ><tr><td>
+            <p:graphicImage value="/resources/skin/logo_upc.jpg"/>   </td>
+ 	        </tr>  
+			<tr><td width="30%"><ui:include src="/cartelera/busEscrita.xhtml" /> 
+			<p:panel id="usuarioName">
+			<h:outputText rendered="#{clienteRegistro.usuarioEncontrado!=null}" value="Bienvenido #{clienteRegistro.usuarioEncontrado.nombre}">
+			</h:outputText>
+			<h:outputText rendered="#{clienteRegistro.clienteEncontrado!=null}" value="Bienvenido #{clienteRegistro.clienteEncontrado.nombre}">
+			</h:outputText>
+			</p:panel>
+			
+			 </td></tr>
+			<tr><td width="50%" valign="top">	
+           		 <ui:include src="/cartelera/carrousel.xhtml" /></td>         		 
+    		</tr>        
+   			<tr>
+   			<td valign="top">
+				<ui:insert name="contenidoright">
+	           	<ui:include src="/cartelera/cartelera.xhtml" />
+				</ui:insert>
+			</td></tr>
+	   </table></td>
+	   <td valign="top"><table ><tr><td align="top">
+					   <p:breadCrumb>  
+				    	 <p:menuitem value="Categories" url="http://localhost:8080/dew-summer2011/principal.jspx" />  
+				    	 <p:menuitem value="Empresa" url="http://localhost:8080/dew-summer2011/empresa/somos.jspx" />
+				    	 <p:menuitem value="Estrenos" url="http://localhost:8080/dew-summer2011/cartelera/peliculas.jspx" />
+				     	 <p:menuitem value="Merchandizing" url="http://localhost:8080/dew-summer2011/venta/merchandize.jspx" />  
+					     <p:menuitem value="Registrese" url="http://localhost:8080/dew-summer2011/registro/registro.jspx" />
+					     <p:menuitem value="Intranet" url="http://localhost:8080/dew-summer2011/registro/autentica.jspx" />  
+				  		 <p:menuitem value="Login" url="http://localhost:8080/dew-summer2011/registro/autenticaCliente.jspx" />
+				     	 <p:menuitem value="Compra OnLine" url="http://localhost:8080/dew-summer2011/venta/carrito.jspx" /> 
+				     
+				 	   </p:breadCrumb>
+	   				  </td></tr>
+	   			  <tr><td>
+   			  <ui:include src="/cartelera/dashboard.xhtml" />     
+	   			  </td></tr>
+	   			  <tr><td><ui:insert name="contenido"></ui:insert>		  
+	   			      </td></tr>	
+	       </table>
+	   </td>
+	</tr></table>
+
+</h:body> 
+</f:view></html>

@@ -1,0 +1,14 @@
+<ui:composition
+   template="/WEB-INF/templates/mainTemplate.jspx"
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+   <ui:define name="content">
+      <ice:form id="frmmain">
+         <ice:panelGrid columns="2" styleClass="panelBox">
+            <ice:outputLabel id="lblMensaje" value="#{msg['app.ingreso']}" />
+         </ice:panelGrid>
+      </ice:form>
+   </ui:define>
+</ui:composition>

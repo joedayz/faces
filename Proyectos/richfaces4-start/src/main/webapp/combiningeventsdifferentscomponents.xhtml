@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+
+			<a4j:status name="action1Status" startText="Button A"
+				startStyle="background-color: #ffA500; 
+				font-weight:bold;
+				position: absolute;
+				right: 5px;
+				top: 1px;
+				width: 140px;" />
+			<a4j:status name="action2Status" startText="Button B"
+				startStyle="background-color: #FF0000; 
+				font-weight:bold;
+				position: absolute;
+				right: 5px;
+				top: 1px;
+				width: 120px;" />
+			<a4j:queue />
+			<h:form>
+				<h:panelGrid columns="2" border="1">
+					<a4j:commandButton value="Button A" action="#{queueBean.action1}"
+						render="now1" status="action1Status">
+						<a4j:attachQueue requestGroupingId="ajaxGroup" />
+					</a4j:commandButton>
+					<a4j:commandButton value="Button B" action="#{queueBean.action2}"
+						render="now2" status="action2Status">
+						<a4j:attachQueue requestGroupingId="ajaxGroup" requestDelay="0" />
+					</a4j:commandButton>
+					<h:outputText id="now1" value="#{queueBean.now1}" />
+					<h:outputText id="now2" value="#{queueBean.now2}" />
+				</h:panelGrid>
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

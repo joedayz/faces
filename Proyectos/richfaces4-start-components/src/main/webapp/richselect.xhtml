@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+			<h:form>
+				<rich:select id="select" defaultLabel="Select Value..."
+					value="#{selectBean.value}"> <f:selectItem
+						itemValue="0" itemLabel="Banana" />
+					<f:selectItem itemValue="1" itemLabel="Cranberry" />
+					<f:selectItem itemValue="2" itemLabel="Blueberry" />
+					<f:selectItem itemValue="3" itemLabel="Orange" />
+					<f:selectItem itemValue="4" itemLabel="Strawberry" />
+					<f:selectItem itemValue="4" itemLabel="Apple" />
+				</rich:select>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

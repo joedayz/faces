@@ -1,0 +1,416 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.16
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema dbpublicacion
+--
+
+CREATE DATABASE IF NOT EXISTS dbpublicacion;
+USE dbpublicacion;
+
+--
+-- Definition of table `aviso`
+--
+
+DROP TABLE IF EXISTS `aviso`;
+CREATE TABLE `aviso` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(20) NOT NULL,
+  `mensaje` varchar(100) NOT NULL,
+  `posicion` int(11) NOT NULL COMMENT '1: Pagina Principal, 2: Pagina de publicaciones, 3: Pagina de compras',
+  `fecha_inicio` datetime NOT NULL,
+  `fecha_fin` datetime NOT NULL,
+  `usuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `FK_aviso_1` (`usuario`),
+  CONSTRAINT `FK_aviso_1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `aviso`
+--
+
+/*!40000 ALTER TABLE `aviso` DISABLE KEYS */;
+INSERT INTO `aviso` (`codigo`,`titulo`,`mensaje`,`posicion`,`fecha_inicio`,`fecha_fin`,`usuario`) VALUES 
+ (1,'DFWEWE','WEFWEW',3,'2012-05-27 00:00:00','2012-05-27 00:00:00',1),
+ (2,'Aviso','este es un aviso',2,'2012-06-01 00:00:00','2012-06-15 00:00:00',1),
+ (3,'aviso 2','ddddd',3,'2012-06-01 00:00:00','2012-06-02 00:00:00',1),
+ (4,'Avisos de  test','mensaje  en pag principal',1,'2012-06-01 00:00:00','2012-06-15 00:00:00',1),
+ (5,'aviso 4','ffsssf',2,'2012-07-01 00:00:00','2012-07-31 00:00:00',1);
+/*!40000 ALTER TABLE `aviso` ENABLE KEYS */;
+
+
+--
+-- Definition of table `bloguer`
+--
+
+DROP TABLE IF EXISTS `bloguer`;
+CREATE TABLE `bloguer` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bloguer`
+--
+
+/*!40000 ALTER TABLE `bloguer` DISABLE KEYS */;
+INSERT INTO `bloguer` (`id`,`nombre`,`version`) VALUES 
+ (1,'EDER',0),
+ (2,'JONATHAN',0),
+ (3,'EDIT',0),
+ (4,'ENRIQUE',0),
+ (5,'SUSAN',0);
+/*!40000 ALTER TABLE `bloguer` ENABLE KEYS */;
+
+
+--
+-- Definition of table `categoria`
+--
+
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE `categoria` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(20) NOT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
+  `padre` int(11) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `FK_categoria_1` (`padre`),
+  CONSTRAINT `FK_categoria_1` FOREIGN KEY (`padre`) REFERENCES `categoria` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `categoria`
+--
+
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` (`codigo`,`nombre`,`descripcion`,`padre`) VALUES 
+ (1,'educacion','materiales de educacion',NULL),
+ (2,'deporte','materiales deportivos',NULL),
+ (13,'test','test',1),
+ (19,'saad','asdads',2),
+ (20,'Musica','musica  variada',NULL),
+ (31,'hiphop','musica callejera',20),
+ (32,'Trans','musica electronica',NULL),
+ (33,'Rock','musica  rock',20),
+ (34,'Rock Alternativo','rrrr',33),
+ (35,'Cine','cine',NULL),
+ (36,'Largometraje','dfddf',35),
+ (37,'Cortometraje','sdsdsd',35),
+ (38,'blanco y negro','dddd',36),
+ (39,'ee','erer',38),
+ (40,'Servicios','servicios',NULL),
+ (41,'general','general',40);
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+
+
+--
+-- Definition of table `imagen`
+--
+
+DROP TABLE IF EXISTS `imagen`;
+CREATE TABLE `imagen` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `publicacion` int(11) DEFAULT NULL,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `FK_imagen_1` (`publicacion`),
+  CONSTRAINT `FK_imagen_1` FOREIGN KEY (`publicacion`) REFERENCES `publicacion` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `imagen`
+--
+
+/*!40000 ALTER TABLE `imagen` DISABLE KEYS */;
+INSERT INTO `imagen` (`codigo`,`publicacion`,`nombre`) VALUES 
+ (15,13,'robot-01.png'),
+ (16,13,'robot-02.png'),
+ (17,13,'robot-03.png'),
+ (18,14,'robot-02.png'),
+ (19,14,'robot-01.png'),
+ (20,14,'robot-03.png');
+/*!40000 ALTER TABLE `imagen` ENABLE KEYS */;
+
+
+--
+-- Definition of table `mensaje`
+--
+
+DROP TABLE IF EXISTS `mensaje`;
+CREATE TABLE `mensaje` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `contenido` varchar(140) NOT NULL,
+  `version` int(11) DEFAULT NULL,
+  `bloguer` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK38A48ADF3595F574` (`bloguer`),
+  CONSTRAINT `FK38A48ADF3595F574` FOREIGN KEY (`bloguer`) REFERENCES `bloguer` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mensaje`
+--
+
+/*!40000 ALTER TABLE `mensaje` DISABLE KEYS */;
+INSERT INTO `mensaje` (`id`,`contenido`,`version`,`bloguer`) VALUES 
+ (58,'mensaje 1',0,NULL),
+ (59,' erwe tr er tert ew tr ewr t ewrt er twer ewrtwertwerertewrt ewrtwertwertwet ew rt we rt we rt wer t wertw ert we trewrtertwer',0,NULL);
+/*!40000 ALTER TABLE `mensaje` ENABLE KEYS */;
+
+
+--
+-- Definition of table `publicacion`
+--
+
+DROP TABLE IF EXISTS `publicacion`;
+CREATE TABLE `publicacion` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` int(11) NOT NULL,
+  `usuario` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `descripcion` text,
+  `tipo` char(1) NOT NULL COMMENT 'N:Nuevo, U:Usado',
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
+  `duracion` int(11) NOT NULL COMMENT 'Duración en días',
+  `estado` char(1) NOT NULL COMMENT 'A:Activo, V:Vendido',
+  PRIMARY KEY (`codigo`),
+  KEY `FK_publicacion_1` (`categoria`),
+  KEY `FK_publicacion_2` (`usuario`),
+  CONSTRAINT `FK_publicacion_1` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`codigo`),
+  CONSTRAINT `FK_publicacion_2` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `publicacion`
+--
+
+/*!40000 ALTER TABLE `publicacion` DISABLE KEYS */;
+INSERT INTO `publicacion` (`codigo`,`categoria`,`usuario`,`titulo`,`descripcion`,`tipo`,`cantidad`,`precio`,`fecha_creacion`,`duracion`,`estado`) VALUES 
+ (1,1,1,'Libros de matematica','Libros del curso de matematica','N',24,'15.00','2012-05-19 00:00:00',30,'A'),
+ (2,1,1,'Solucionarios de examenes','solucionarios de los examenes ','N',100,'10.00','2012-05-19 00:00:00',30,'A'),
+ (3,2,1,'Ropa deportiva','Prendas deportivas para educacion fisica','N',9,'120.00','2012-03-19 00:00:00',60,'C'),
+ (4,2,2,'Libros de matematica','Libros del curso de matematica','N',25,'15.00','2012-05-19 00:00:00',31,'A'),
+ (7,2,2,'Camisetas','camisetas de futbol','U',10,'20.00','2012-06-08 00:00:00',7,'1'),
+ (8,2,2,'Chimpunes','Chimpunes Nike','N',5,'100.00','2012-06-08 00:00:00',3,'1'),
+ (9,2,2,'Pelotas','Viniball','N',1,'50.00','2012-06-08 00:00:00',2,'1'),
+ (13,35,2,'Robots','juguetes','N',5,'300.00','2012-06-16 00:00:00',7,'1'),
+ (14,20,2,'Discos','varios','U',4,'30.00','2012-06-16 00:00:00',3,'1');
+/*!40000 ALTER TABLE `publicacion` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tipo_documento`
+--
+
+DROP TABLE IF EXISTS `tipo_documento`;
+CREATE TABLE `tipo_documento` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(50) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tipo_documento`
+--
+
+/*!40000 ALTER TABLE `tipo_documento` DISABLE KEYS */;
+INSERT INTO `tipo_documento` (`codigo`,`descripcion`) VALUES 
+ (1,'dni'),
+ (72,'DNI'),
+ (73,'PASAPORTE'),
+ (74,'PARTIDA'),
+ (76,'PASAPORTE');
+/*!40000 ALTER TABLE `tipo_documento` ENABLE KEYS */;
+
+
+--
+-- Definition of table `tipo_persona`
+--
+
+DROP TABLE IF EXISTS `tipo_persona`;
+CREATE TABLE `tipo_persona` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(50) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tipo_persona`
+--
+
+/*!40000 ALTER TABLE `tipo_persona` DISABLE KEYS */;
+INSERT INTO `tipo_persona` (`codigo`,`descripcion`) VALUES 
+ (1,'ADMINISTRADOR'),
+ (2,'Alumno'),
+ (3,'Profesor'),
+ (4,'Director'),
+ (74,'ESTUDIANTE'),
+ (75,'DOCENTE'),
+ (76,'ADMINISTRATIVO'),
+ (77,'ESTUDIANTE'),
+ (78,'DOCENTE'),
+ (79,'ADMINISTRATIVO'),
+ (80,'ESTUDIANTE'),
+ (81,'DOCENTE'),
+ (82,'ADMINISTRATIVO'),
+ (83,'ESTUDIANTE'),
+ (84,'DOCENTE'),
+ (85,'ADMINISTRATIVO'),
+ (86,'ESTUDIANTE'),
+ (87,'DOCENTE'),
+ (88,'ADMINISTRATIVO'),
+ (89,'ESTUDIANTE'),
+ (90,'DOCENTE'),
+ (91,'ADMINISTRATIVO'),
+ (92,'ESTUDIANTE'),
+ (93,'DOCENTE'),
+ (94,'ADMINISTRATIVO'),
+ (95,'ESTUDIANTE'),
+ (96,'DOCENTE'),
+ (97,'ADMINISTRATIVO'),
+ (98,'ESTUDIANTE'),
+ (99,'DOCENTE'),
+ (100,'ADMINISTRATIVO'),
+ (101,'ESTUDIANTE'),
+ (102,'DOCENTE'),
+ (103,'ADMINISTRATIVO'),
+ (104,'ESTUDIANTE'),
+ (105,'DOCENTE'),
+ (106,'ADMINISTRATIVO'),
+ (107,'PROGRAMADOR'),
+ (108,'MILITAR'),
+ (109,'ARBITRO');
+/*!40000 ALTER TABLE `tipo_persona` ENABLE KEYS */;
+
+
+--
+-- Definition of table `transaccion`
+--
+
+DROP TABLE IF EXISTS `transaccion`;
+CREATE TABLE `transaccion` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` int(11) NOT NULL,
+  `publicacion` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `comentario` varchar(100) DEFAULT NULL,
+  `fecha_registro` date NOT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `FK_transaccion_1` (`usuario`),
+  KEY `FK_transaccion_2` (`publicacion`),
+  CONSTRAINT `FK_transaccion_1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`codigo`),
+  CONSTRAINT `FK_transaccion_2` FOREIGN KEY (`publicacion`) REFERENCES `publicacion` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `transaccion`
+--
+
+/*!40000 ALTER TABLE `transaccion` DISABLE KEYS */;
+INSERT INTO `transaccion` (`codigo`,`usuario`,`publicacion`,`cantidad`,`comentario`,`fecha_registro`) VALUES 
+ (1,2,1,1,'excelente producto','2012-05-19'),
+ (2,1,3,2,'eewdweqweq','2012-05-01'),
+ (3,1,1,2,'dewedwewe','2012-05-27'),
+ (4,2,1,1,'dfdfdfdfd','2012-02-19'),
+ (5,2,9,1,'my libro','2012-02-19'),
+ (6,2,3,1,'qeqwqeq','2012-02-19'),
+ (7,1,14,1,'ddddddd','2012-02-19'),
+ (8,2,9,1,'eeee','2012-02-19');
+/*!40000 ALTER TABLE `transaccion` ENABLE KEYS */;
+
+
+--
+-- Definition of table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE `usuario` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_persona` int(11) NOT NULL,
+  `tipo_documento` int(11) NOT NULL,
+  `nombres` varchar(50) NOT NULL,
+  `apellido_paterno` varchar(30) NOT NULL,
+  `apellido_materno` varchar(30) NOT NULL,
+  `sexo` char(1) NOT NULL COMMENT 'M:Masculino, F:Femenino',
+  `numero_documento` varchar(15) NOT NULL,
+  `correo` varchar(50) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `fecha_nacimiento` datetime DEFAULT NULL,
+  `usuario` varchar(20) NOT NULL,
+  `clave` varchar(20) NOT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `FK_usuario_1` (`tipo_persona`),
+  KEY `FK_usuario_2` (`tipo_documento`),
+  CONSTRAINT `FK_usuario_1` FOREIGN KEY (`tipo_persona`) REFERENCES `tipo_persona` (`codigo`),
+  CONSTRAINT `FK_usuario_2` FOREIGN KEY (`tipo_documento`) REFERENCES `tipo_documento` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `usuario`
+--
+
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` (`codigo`,`tipo_persona`,`tipo_documento`,`nombres`,`apellido_paterno`,`apellido_materno`,`sexo`,`numero_documento`,`correo`,`telefono`,`fecha_nacimiento`,`usuario`,`clave`) VALUES 
+ (1,1,1,'Eder','Luis','Pariona','M','41491279','eder.luis@ec.pe','992758106','1982-10-06 00:00:00','eluis','123456'),
+ (2,3,1,'Maria','Lopez','Ruiz','F','08612435','maria.lopez','99878987','1980-02-15 00:00:00','mlopez','123456'),
+ (3,1,1,'ENRIQUE','ROSAS','DIAZ','M','41643199','ENRIKERD@HOTMAIL.COM','989776392','2012-06-08 00:00:00','ENRIKERD','@123456'),
+ (4,4,76,'ewewe','wewe','wewewe','F','ewew','WQWQ','wewe','2012-06-07 00:00:00','FFFFF','@12788'),
+ (5,1,72,'SUSAN','HUAMAN','VALERIANO','F','1234567','SUSANA@HOTMAIL.COM','1234567','2012-06-22 00:00:00','SUSAN','@123456'),
+ (6,1,72,'ENRIQUE','ROSAS','DIAZ','M','416431993','ENRIKERDE@HOTMAIL.COM','12345678','2012-06-08 00:00:00','ENRIKERDE','@123456'),
+ (7,3,72,'4r3r434','3433','4r34r3','M','434','34r34','34r3','2012-06-10 00:00:00','4444','@123456'),
+ (8,2,72,'Edith','Moreno','Huertas','F','34444444','ENRIKERD2334@HOTMAIL.COM','243243','2012-06-14 00:00:00','eeee','243432432');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+
+--
+-- Definition of table `visita`
+--
+
+DROP TABLE IF EXISTS `visita`;
+CREATE TABLE `visita` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `publicacion` int(11) NOT NULL,
+  `fecha_registro` datetime NOT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `FK_visita_1` (`publicacion`),
+  CONSTRAINT `FK_visita_1` FOREIGN KEY (`publicacion`) REFERENCES `publicacion` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `visita`
+--
+
+/*!40000 ALTER TABLE `visita` DISABLE KEYS */;
+INSERT INTO `visita` (`codigo`,`publicacion`,`fecha_registro`) VALUES 
+ (6,2,'2012-05-27 00:00:00'),
+ (7,4,'2012-05-27 00:00:00');
+/*!40000 ALTER TABLE `visita` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

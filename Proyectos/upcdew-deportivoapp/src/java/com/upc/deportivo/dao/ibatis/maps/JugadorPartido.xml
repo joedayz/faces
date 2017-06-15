@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="JugadorPartidoBean">
+
+   <!-- Use type aliases to avoid typing the full classname every time. -->
+    <typeAlias alias="JugadorPartidoBean" type="com.upc.deportivo.model.JugadorPartidoBean"/>
+   
+     
+   <resultMap id="JugadorPartidoResult" class="com.upc.deportivo.model.JugadorPartidoBean">
+    <result property="codigoJugadorPartido" column="Co_JugadorPartido"/>
+    </resultMap>
+
+   <parameterMap id="obtenerJugadoresPartidoParameter" class="java.util.Map"  >
+    <parameter property="codigoPartido"/>
+   </parameterMap>
+   
+   <parameterMap id="jugadorPartidoActualizarParameter" class="java.util.Map"  >
+        <parameter property="codigoJugadorPartido" />
+        <parameter property="numPasesBuenos" />
+        <parameter property="posicionAdelantada" />
+        <parameter property="escalaRendimiento" />
+        <parameter property="codigoJugador" />
+        <parameter property="goles"/>
+        <parameter property="tarjetaAmarilla" />
+        <parameter property="tarjetaRoja" />
+        <parameter property="indiciplina"/>
+        <parameter property="lesiones" />
+        <parameter property="codigoPartido" />
+    </parameterMap>
+    
+ <resultMap id="ListadoJugadorPartidoResult" class="JugadorPartidoBean">
+    <result property="codigoJugadorPartido" column="Co_JugadorPartido"/>
+    <result property="numPasesbuenos" column="Nu_pasesbuenos" />
+    <result property="posicionAdelanta" column="Fl_PosicionAdelanta"/>
+    <result property="scalaRendimiento" column="Nu_ScalaRendimiento"/>
+    <result property="codigo" column="Co_jugador"/>
+    <result property="goles" column="Nu_Goles"/>
+    <result property="tarjetaAmarillas" column="Nu_TarjetaAmarillas"/>
+    <result property="tarjetaRojas" column="Nu_TarjetaRojas"/>
+    <result property="indiciplina" column="Tx_Indisciplina"/>
+    <result property="lesiones" column="tx_Lesiones"/>
+    <result property="codigoPartido" column="Co_partido"/>
+     <result property="nombreJugador" column="No_Jugador"/>
+    
+</resultMap>
+         
+ 
+    <procedure id="actualizarJugadorPartido"  parameterMap="jugadorPartidoActualizarParameter"  >
+   {call USP_INSERTA_JUGADOR_PARTIDO(?,?,?,?,?,?,?,?,?,?,?)}
+    </procedure>
+    
+     <procedure id="obtenerJugadoresPartido"    parameterMap="obtenerJugadoresPartidoParameter" 
+   resultMap="ListadoJugadorPartidoResult">
+   {call USP_OBTENER_JUGADORES_PARTIDO(?)}
+ </procedure>
+
+</sqlMap>

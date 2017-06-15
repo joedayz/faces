@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="pe.joedayz.ejemplos.persistence.entity">
+	<class name="User" table="`USER`">
+		<id name="id" type="long" column="`ID`">
+			<generator class="native" />
+		</id>
+
+		<property name="sex" type="boolean"
+				  not-null="true" column="`SEX`" />
+
+		<property name="firstName" type="string" length="70"
+				  not-null="true" column="`FIRST_NAME`" />
+
+		<property name="lastName" type="string" length="70"
+				  not-null="true" column="`LAST_NAME`" />
+
+		<property name="email" type="string" length="200"
+				  not-null="true" column="`EMAIL`"  />
+
+		<property name="userName" type="string" length="50"
+				  not-null="true" column="`USER_NAME`" unique="true" />
+
+		<property name="password" type="string" length="200"
+				  not-null="true" column="`PASSWORD`" />
+
+		<property name="credential" type="string" length="250"
+				  not-null="false" column="`CREDENTIAL`" />
+
+		<property name="enabled" type="boolean" 
+				  not-null="true" column="`ENABLED`" />
+
+	</class>
+</hibernate-mapping>

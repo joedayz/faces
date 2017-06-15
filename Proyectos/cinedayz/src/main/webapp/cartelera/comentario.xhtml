@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+  
+
+	<h:head>
+		<p:resources></p:resources>
+	</h:head>
+
+	 <h:body>
+	 <h:form>		  
+	    <h:panelGrid id="comentario" columns="2" cellpadding="5">
+	    
+	    	<h:inputHidden value="asolissoli"> </h:inputHidden>
+	    	<h:outputText for ="cc" value="Comentario"/>
+	  	    <p:inputTextarea id="cc" value="#{carteleraLista.comentarioPelicula}" style="width:300px;height:100px;" effectDuration="400" />
+	      
+            <h:outputText value="Rate me:" />  
+            
+            
+              
+     </h:panelGrid>  
+                        
+     <p:growl id="messages" showDetail="true"/> 
+                         
+     <h:commandButton value="Submit"  action="#{carteleraLista.guardarComentarioPelicula}" style="margin:5px"/>  
+   
+	</h:form>      
+    </h:body>
+</html>

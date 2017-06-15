@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+    <bean id="genericoDAO" class="pe.joedayz.ejemplos.cinedayz.core.GenericoDAO" abstract="true">
+        <property name="sessionFactory" ref="sCineSessionFactory"/>
+    </bean>
+    <bean id="clienteDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.ClienteDAO" parent="genericoDAO"></bean>
+    <bean id="usuarioDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.UsuarioDAO" parent="genericoDAO"></bean>
+    <bean id="peliculaDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.PeliculaDAO" parent="genericoDAO"></bean>
+    <bean id="actorDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.ActorDAO" parent="genericoDAO"></bean>
+    <bean id="carteleraDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.CarteleraDAO" parent="genericoDAO"></bean>
+    <bean id="detcarteleraDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.DetCarteleraDAO" parent="genericoDAO"></bean>
+    <bean id="permisoDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.PermisoDAO" parent="genericoDAO"></bean>
+	<bean id="comentarioDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.ComentarioDAO" parent="genericoDAO"></bean>
+	<bean id="localDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.LocalDAO" parent="genericoDAO"></bean>
+	<bean id="salaDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.SalaDAO" parent="genericoDAO"></bean>
+	<bean id="actuacionDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.ActuacionDAO" parent="genericoDAO"></bean>
+	<bean id="shopcartDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.ShopCartDAO" parent="genericoDAO"></bean>
+	<bean id="merchandizeDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.MerchandizeDAO" parent="genericoDAO"></bean>
+	<bean id="shopcartdetailDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.ShopCartDetailDAO" parent="genericoDAO"></bean>
+	<bean id="asientoDAO" class="pe.joedayz.ejemplos.cinedayz.mantenimiento.AsientoDAO" parent="genericoDAO"></bean>	
+
+</beans>

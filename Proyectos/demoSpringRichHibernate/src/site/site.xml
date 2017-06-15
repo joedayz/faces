@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="TIME">
+  <bannerLeft>
+    <name>demoSpringRichHibernate</name>
+    <src>images/logo.gif</src>
+    <href>http://www.ploin-gmbh.de/</href>
+  </bannerLeft>
+
+  <publishDate position="navigation-bottom" format="dd.MM.yyyy"/>
+  <body>
+    <links>
+      <item name="PLOIN GmbH" href="http://www.ploin-gmbh.de/" />
+    </links>
+
+    <menu name="TIME">
+		<item name="Introduction" href="index.html"/>
+		<item name="Release Notes" href="releasenotes.html" />				
+	</menu>
+
+    <menu ref="reports"/>
+
+  </body>
+</project>

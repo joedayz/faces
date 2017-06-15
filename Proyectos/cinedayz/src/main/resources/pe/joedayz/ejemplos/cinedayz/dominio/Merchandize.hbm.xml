@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.Merchandize" table="merchandise">
+		<id name="merchandizeCodigo" column="mercodig" length="5">
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="pelicula" column="pelcodig"></many-to-one>
+		<property name="merchandizeTipoProducto" column="mertipoi"  />
+		<property name="merchandizeDetalle" column="merdetal"  />
+		<property name="merchandizeFoto" column="merfotoi"  />
+		<property name="merchandizePrecio" column="merpreci"  />
+		<property name="merchandizeCantidad" column="mercanti"  />		
+	</class>
+</hibernate-mapping>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="../principal.xhtml">
+<ui:define name="contenido">
+   
+
+	 <h:form prependId="false">  
+   
+     <!--  <p:dataGrid var="pel" value="#{carteleraLista.unaPeliculaDetalle}" columns="2"  >
+           
+         <p:column>-->  
+             <p:panel id="panel" header="#{carteleraLista.unaPeliculaDetalle.titulo}" style="text-align:center" >  
+                 <h:panelGrid columns="2" style="width:80%">
+                  
+                     <p:graphicImage value="/resources/imagePeliculas/#{carteleraLista.unaPeliculaDetalle.poster}"/>
+                     
+                     <h:panelGrid columns="2" columnClasses="column" style="width:100%">
+                      <p:commandButton value="Trailer" actionListener="#" update="panel,display" image="ui-icon ui-icon-disk" />  
+				      <p:commandButton ajax="false"  value="comentario"  action="comentario.xhtml"  update="comentario" image="ui-icon ui-icon-disk" />
+                       
+        			            
+                     <h:outputText for ="titulo" align="left" value="Titulo" />
+                     <h:outputText id="titulo" value="#{carteleraLista.unaPeliculaDetalle.titulo}" />
+                     
+                     
+                     <h:outputText for="genero" align="left" value="Genero" />
+                     <h:outputText id="genero" value="#{carteleraLista.unaPeliculaDetalle.genero}" />
+                     
+                     <h:outputText for="pais" align="left" value="Pais" />
+                     <h:outputText id="pais" value="#{carteleraLista.unaPeliculaDetalle.paisOrigen}" />
+                     
+                     <h:outputText for="publico" align="left" value="Publico Objetivo" />
+                     <h:outputText id="publico" value="#{carteleraLista.unaPeliculaDetalle.publObjetivo}" />
+                     
+                     <h:outputText for="emision" value="Tipo Emision" />
+                     <h:outputText id="emision" value="#{carteleraLista.unaPeliculaDetalle.tipoEmision}" />
+                     
+                     
+                     <h:outputText for="resumen" value="Resumen" />
+                     <h:outputText id="resumen" value="#{carteleraLista.unaPeliculaDetalle.descripcion}" />
+                     
+    
+                     <h:outputText for="duracion" value="Duracion" />
+                     <h:outputText id="duracion" value="#{carteleraLista.unaPeliculaDetalle.peliculaLongitud}" />
+                     
+                     
+                     <h:outputText value="Director" />
+                     <h:outputText value="#{carteleraLista.unaPeliculaDetalle.peliculaDirector}" />
+                     
+                     <h:outputText value="Escritor" />
+                     <h:outputText value="#{carteleraLista.unaPeliculaDetalle.peliculaEscritor}" />
+                     
+                     <h:outputText value="Idioma" />
+                     <h:outputText value="#{carteleraLista.unaPeliculaDetalle.peliculaIdioma}" />
+ 	   <h:outputText value="Artistas" />    		
+      <p:dataList id="display" var="peli" value="#{carteleraLista.listaPeliculaActores}">	 	   
+	 	   				  	 	     	  	              
+           		<h:outputText value="#{peli.actor.nombre} " /> 
+           		<h:outputText value="#{peli.actor.apellido}" />
+           			 	
+      </p:dataList>	
+    		
+    					                                        
+ 		         </h:panelGrid>
+
+        	 </h:panelGrid>
+        	 
+             </p:panel>  
+    
+         
+		 
+	<p:panel id="comentario">
+	<ui:include src="/cartelera/comentario.xhtml" />
+		</p:panel>	 
+	
+	<p:panel id="trailer">
+	
+		</p:panel>	 
+		    
+	
+	</h:form>
+</ui:define>
+</ui:composition>	
+		
+</html>

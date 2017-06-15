@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.Pelicula" table="pelicula" >
+	
+		<id name="codigo" column="pelcodig" length="5">
+			<generator class="assigned" />
+		</id>		
+		<property name="titulo" column="peltitul" length="40" />
+		<property name="descripcion" column="pelabstr" length="40" />
+	  	<property name="genero" column="pelgener" length="20" />
+		<property name="subtitulo" column="pelsubti" length="40" />
+		
+		<property name="PaisOrigen" column="pelpaiso" length="20" />
+		<property name="PublObjetivo" column="pelpubob" length="20" />
+		
+		<property name="tipoEmision" column="peltipem" length="20" />
+		<property name="poster" column="pelposte" length="40" />
+		<property name="merchandize" column="pelmerch" length="1" />
+		
+		<property name="peliculaLongitud" column="pellongi"  />
+		<property name="peliculaDirector" column="peldirec"  />
+		<property name="peliculaEscritor" column="pelescri"  />
+		<property name="peliculaIdioma" column="pelidiom"  />	
+		
+	
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="JugadorBean">
+
+   <!-- Use type aliases to avoid typing the full classname every time. -->
+   <typeAlias alias="JugadorBean" type="com.upc.deportivo.model.JugadorBean"/>
+
+  <parameterMap id="jugadorActualizarParameter" class="java.util.Map"  >
+    <parameter property="codigo" />
+    <parameter property="telefono"  />
+    <parameter property="nombre" />
+    <parameter property="apellidoPaterno" />
+    <parameter property="apellidoMaterno"/>
+    <parameter property="direccion" />
+    <parameter property="contrato" />
+    <parameter property="fecha" />
+    <parameter property="posicion"/>
+   </parameterMap>
+   
+   <parameterMap id="jugadorEliminarParameter" class="java.util.Map"  >
+    <parameter property="codigo" />
+   
+   </parameterMap>
+   
+
+<resultMap id="ListadoJugadoresResult" class="JugadorBean">
+    <result property="codigo" column="Co_Jugador"/>
+    <result property="telefono" column="tx_Telefono" />
+    <result property="nombre" column="No_Jugador"/>
+    <result property="apellidoPaterno" column="Tx_ApellidoPaterno"/>
+    <result property="apellidoMaterno" column="Tx_ApellidoMaterno"/>
+    <result property="direccion" column="Tx_Direccion"/>
+    <result property="contrato" column="Tx_Contrato"/>
+    <result property="fecha" column="Fe_Registro"/>
+    <result property="posicion" column="Tx_Posicion"/>
+   
+</resultMap>
+
+ <procedure id="obtenerListadoJugadores"   
+   resultMap="ListadoJugadoresResult">
+   {call USP_OBTENER_JUGADORES()}
+ </procedure>
+ 
+ 
+ 
+  <procedure id="actualizarJugador"  parameterMap="jugadorActualizarParameter"  >
+   {call USP_INSERTA_JUGADOR(?,?,?,?,?,?,?,?,?)}
+ </procedure>
+
+
+<procedure id="eliminarJugador"  parameterMap="jugadorEliminarParameter"  >
+   {call USP_ELIMINAR_JUGADOR(?)}
+ </procedure>
+
+
+
+
+
+</sqlMap>

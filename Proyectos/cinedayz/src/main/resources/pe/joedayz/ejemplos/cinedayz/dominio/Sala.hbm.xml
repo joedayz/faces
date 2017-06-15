@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.Sala" table="sala">
+		<id name="codigoSala" column="salcodig" length="5">
+			<generator class="assigned" />
+		</id>
+ 		<property name="nombreSala" column="salnombr" length="20" />
+	 	<many-to-one name="local" column="loccodig"></many-to-one> 
+		<property name="descripcionSala" column="saldescr"  length="40"/>
+		<property name="capacidadSala" column="salcapac"  />
+	    				
+	</class>
+</hibernate-mapping>
+

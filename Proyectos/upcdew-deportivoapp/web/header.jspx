@@ -1,0 +1,22 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ice="http://www.icesoft.com/icefaces/component"
+     style="width:100%">
+         <table cellpadding="0" cellspacing="0" border="0" width="100%" >
+            <tr>
+               <td rowspan="3" width="50%" class="header_title">
+                  <h:outputText value="#{msg['app.header.titulo']}" />
+               </td>
+               <td width="49%">&#160;</td>
+               <td rowspan="3" width="1%">&#160;</td>
+            </tr>
+            <tr>
+               <td class="header_name" align="right">
+                  <h:outputText value="#{usuarioBean.nombre}" />    
+               </td>
+               
+            </tr>
+            
+         </table>
+</div>
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+			<h:form>
+				<rich:tabPanel style="width:40%" switchType="ajax">
+					<rich:tab>
+						<f:facet name="header">
+							<h:panelGrid columns="2">
+								<h:outputText value="San Francisco" />
+								<h:graphicImage value="/images/sf_flag.png" height="25"
+									width="25" />
+							</h:panelGrid>
+						</f:facet>
+						<h:outputText
+							value="Uno" />
+					</rich:tab>
+					<rich:tab>
+						<f:facet name="header">
+							<h:panelGrid columns="2">
+								<h:outputText value="Los Angeles" />
+								<h:graphicImage value="/images/la_flag.png" height="25"
+									width="25" />
+							</h:panelGrid>
+						</f:facet>
+						<h:outputText
+							value="Dos" />
+					</rich:tab>
+					<rich:tab>
+						<f:facet name="header">
+							<h:panelGrid columns="2">
+								<h:outputText value="New York City" />
+								<h:graphicImage value="/images/nyc_flag.png" height="25"
+									width="25" />
+							</h:panelGrid>
+						</f:facet>
+						<h:outputText
+							value="Tres" />
+					</rich:tab>
+				</rich:tabPanel>
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

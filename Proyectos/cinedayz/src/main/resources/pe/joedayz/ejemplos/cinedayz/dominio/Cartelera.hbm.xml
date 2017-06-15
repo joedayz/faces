@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+
+	<class name="pe.joedayz.ejemplos.cinedayz.dominio.Cartelera" table="cartelera" >			
+		<id name="carteleraCodigo" column="carcodig"  >
+			<generator class="increment" />
+		</id>		
+	
+		<many-to-one name="pelicula" column="pelcodig"></many-to-one>	
+	  	<property name="fechaIni" column="carfecin"  />
+		<property name="fechaFin" column="carfecfi"  />		
+		<property name="status" column="carstatu" length="1" />
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-08 19:45:15
+project --topLevelPackage com.mycompany --projectName roo-jsf --java 6 --packaging JAR
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-08 19:45:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-08 19:45:20
+persistence setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY 
+enum type --class ~.domain.TipoSangre
+enum constant --name Grupo_A
+enum constant --name Grupo_B
+enum constant --name Grupo_O
+enum constant --name Grupo_AB
+entity jpa --class ~.domain.Organo
+field number --fieldName precio --type java.lang.Integer --notNull --min 5
+field string --fieldName nombre --notNull 
+field date --fieldName mejorAntesDe --type java.util.Date --dateFormat SHORT --notNull 
+field string --fieldName descripcion
+entity jpa --class ~.domain.Donante
+field string --fieldName nombre --sizeMax 25 --notNull
+field enum --fieldName tipoSangre --type ~.domain.TipoSangre --notNull 
+field date --fieldName fechaNacimiento --type java.util.Date --past 
+field string --fieldName email --regexp "[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+" --notNull 
+field set --fieldName organos --type ~.domain.Organo --mappedBy donante --notNull false --cardinality ONE_TO_MANY
+field reference --fieldName donante --class ~.domain.Organo --type ~.domain.Donante --notNull
+web jsf setup --implementation APACHE_MYFACES --theme EGGPLANT 
+web jsf all --package ~.jsf
+quit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-08 20:09:53
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-09-08 20:10:34
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-09-08 20:19:52
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-11-06 13:08:47
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-11-06 13:09:40
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log opened at 2012-11-07 17:19:42
+// [failed] security setup
+web mvc setup
+security setup
+// Spring Roo 1.1.5.RELEASE [rev d3a68c3] log closed at 2012-11-07 18:42:25

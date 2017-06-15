@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+
+			<h:form id="form">
+				<h:panelGrid>
+					<h:selectOneRadio value="#{bean3.selection}">
+						<f:selectItem itemValue="clock1" itemLabel="Clock 1" />
+						<f:selectItem itemValue="clock2" itemLabel="Clock 2" />
+						<f:selectItem itemValue="clock3" itemLabel="Clock 3" />
+					</h:selectOneRadio>
+					<h:commandButton id="updateButton" value="Update">
+						<f:ajax event="click" execute="@form"
+							listener="#{bean3.selectComponents}"
+							render="#{bean3.renderComponents}" />
+					</h:commandButton>
+				</h:panelGrid>
+				<h:panelGrid cellspacing="6">
+					<h:outputText id="clock1" value="#{bean3.clock1}" />
+					<h:outputText id="clock2" value="#{bean3.clock2}" />
+					<h:outputText id="clock3" value="#{bean3.clock3}" />
+				</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

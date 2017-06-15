@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+  
+
+	<h:head>
+		<p:resources></p:resources>
+	</h:head>
+	 <h:body>  
+	 	<h:form>
+	 	<p:carousel value="#{carteleraLista.cartelera}" var="peli" rows="1">
+	 	 <h:panelGrid columns="1" style="width:100%" cellpadding="5">  
+	 	    <h:outputText value="#{peli.getSala().getLocal().getLocalNombre()}" />
+	 	    
+   	 	    <h:outputText value="#{peli.getCartelera().getPelicula().getTitulo()}" />
+	 		<h:outputText value="Horario : #{peli.horario}" />
+	 		<h:outputText value="Sala    : #{peli.getSala().getNombreSala()}" />
+	 		<h:outputText value="Precio  : #{peli.precio}" />
+	 	</h:panelGrid>	
+	 	</p:carousel>
+	 	
+	 	
+	     
+	  
+	 	</h:form>
+     </h:body>  
+	
+		
+	
+</html>
